@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="myLocalHost">
+    <serverData>
+      <paths name="myLocalHost">
+        <serverdata>
+          <mappings>
+            <mapping deploy="on-line-payment" local="$PROJECT_DIR$" web="/on-line-payment" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>

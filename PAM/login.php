@@ -20,7 +20,7 @@ if( !empty($email) && !empty($password) && !empty($userType) ) {
         $sql = 'select * from seller WHERE email = "' . $email . '"' . 'and password="' . $password . '"';
     }
     elseif ($userType === "buyer") {
-        $sql = 'select * from buyer WHERE email = "' . $email . '"' . 'and password="' . $password . '"';
+        $sql = 'select * from buyer WHERE email = "' . $email . '"' . ' and password="' . $password . '"';
     }
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
@@ -34,8 +34,11 @@ if( !empty($email) && !empty($password) && !empty($userType) ) {
         } elseif($userType === "buyer") {
             $_SESSION['uid'] = $row['b_id'];
         }
-        header("Location: ../Booking/index.php");
+        echo "$sql" . "</br>" . "login success";
+//        header("Location: ../Booking/index.php");
     } else {
-        header("Location: login.html");
+        echo "$sql" . "</br>";
+        echo "login failed";
+//        header("Location: register.html");
     }
 }

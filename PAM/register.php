@@ -11,6 +11,17 @@ $email = $_POST['email'];
 $ID = $_POST['identity'];
 $password = $_POST['password'];
 $password2 = $_POST['repassword'];
+echo "realname is $realName";
+echo "<br>";
+echo "userType is $userType";
+echo "<br>";
+echo "email is $email";
+echo "<br>";
+echo "ID is $ID";
+echo "<br>";
+echo "password is $password";
+echo "<br>";
+echo "password2 is $password2";
 $conn = db_connect();
 if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !empty($password) && !empty($password2)){
     $realName = mysqli_escape_string($realName);
@@ -32,14 +43,14 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
         }
         else
         {
-            $insert1 ="insert into `buyer` values('$email','$password',0,NULL ,'$email','$realName','$ID')";
+            $insert1 ="insert into `buyer` values(null,'$email','$password',0,NULL ,'$email','$realName','$ID')";
             $set2=mysqli_query($conn,$insert1,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {
-                echo "<script>alert('增加成功!!!');location='login.html';</script>";
+                echo "<script>alert('注册成功!!!');location='login.html';</script>";
             }
             else{
-                echo "<script>alert('增加失败!!!');location='register.html';</script>";
+                echo "<script>alert('注册失败!!!');location='register.html';</script>";
             }
         }
     }
@@ -53,20 +64,15 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
         }
         else
         {
-            $insert2 ="insert into `seller` values('$email','$password',0,'$userType',NULL ,NULL,'$email','$realName','$ID')";
+            $insert2 ="insert into `seller` values(null,'$email','$password',0,'$userType',NULL ,NULL,'$email','$realName','$ID')";
             $set2=mysqli_query($conn,$insert1,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {
-                echo "<script>alert('增加成功!!!');location='login.html';</script>";
+                echo "<script>alert('注册成功!!!');location='login.html';</script>";
             }
             else{
-                echo "<script>alert('增加失败!!!');location='register.html';</script>";
+                echo "<script>alert('注册失败!!!');location='register.html';</script>";
             }
         }
     }
-
-
-
-
-
 }

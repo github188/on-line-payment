@@ -6,7 +6,7 @@
  * Time: 15:35
  */
 $conn = db_connect();
-$email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
+$email = isset($_GET['email']) ? htmlspecialchars($_GET['email']) : '';
 $check1 ="select * from `buyer` where `email`= '".$email."'";
 $set1 = mysqli_query($conn,$check1,MYSQLI_STORE_RESULT);
 $result1=mysqli_fetch_array($set1,MYSQLI_ASSOC);

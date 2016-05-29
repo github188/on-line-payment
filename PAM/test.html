@@ -16,6 +16,7 @@
     document.getElementById("email").oninput = function() {
         var urlVerify = "check_register.php?email=" + $("#email").value + "&action=verify";
         var xmlhttp = $.ajax({url: urlVerify, async: false});
+        console.log(xmlhttp.responseText);
         if(xmlhttp.responseText == "success") {
             $("#button2_tijiao").enabled = true;
         } else if(xmlhttp.responseText == "fail"){

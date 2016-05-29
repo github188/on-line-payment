@@ -525,8 +525,8 @@
     </div>
     <button class="button" id="buzhou3_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
     <script>
-        $("#email").onfocus = function() {
-            var urlVerify = "register.php?email=" + $("#email")[0].value + "&action=verify";
+        document.getElementById("email").oninput = function() {
+            var urlVerify = "check_register.php?email=" + document.getElementById("email").value + "&action=verify";
             var xmlhttp = $.ajax({url: urlVerify, async: false});
             if(xmlhttp.responseText == "success") {
                 $("#button2_tijiao").enabled = true;

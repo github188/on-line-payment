@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,89 +16,32 @@
     <script src="js/messages_zh.js"></script>
     <script src="js/additional-methods.js"></script>
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.min.js"></script>
-      <script src="js/respond.min.js"></script>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
     <style>
-      #headline-container
-      {
+      #headline-container {
         margin-top: 20px;
         height: 65px;
       }
-      #headline-container h1
-      {
+
+      #headline-container h1 {
         color: #27AE60;
-        position:absolute;
+        position: absolute;
         left: 20%;
       }
-      #headline-container h1 span
-      {
+
+      #headline-container h1 span {
         color: green;
         font-size: 20px;
       }
-      #buzhou2
-      {
-        margin-top: 20px;
-        border-radius: 10px;
-        border-color: green;
 
-      }
-      div.scroll
-      {
-        background-color:#fff;
-        width:600px;
-        height:250px;
-        overflow:scroll;
-        margin: 5px;
-        padding: 5px;
-        border: 5px;
-      }
-      p.one
-      {
-        outline-style:solid;
-        outline-width: 3px;
-        border:1px solid green;
-        width:580px;
-        height:300px;
-      }
-      .button
-      {
-        display: inline-block;
-        border-radius: 4px;
-        background-color: limegreen;
-        border: none;
-        color: #FFF;
-        text-align: center;
-        font-size: 15px;
-        padding: 5px;
-        width: 100px;
-        transition: all 0.5s;
-        cursor: pointer;
-        margin: 5px;
-      }
+        #buzhou2 {
+            margin-top: 20px;
+            border-radius: 10px;
+            border-color: green;
 
-      .button span
-      {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
-      }
-
-      .button span:after
-      {
-        content: '»';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-      }
-
-      .button:hover span
-      {
-        padding-right: 25px;
-      }
+        }
 
       .button:hover span:after
       {
@@ -107,7 +50,7 @@
       }
       .control-label
       {
-        padding: 10px;
+        padding: 5px;
         margin: 10px;
         border: 10px;
         font-size: 15px;
@@ -117,426 +60,515 @@
         padding: 15px;
         margin: 10px;
         border: 10px;
+      }
+      div.scroll{
+            background-color: #fff;
+            width: 600px;
+            height: 250px;
+            overflow: scroll;
+            margin: 5px;
+            padding: 5px;
+            border: 5px;
+        }
 
-      }
-      a:link,a:visited
-      {
-        border-radius: 4px;
-        font-weight:bold;
-        color:#FFF;
-        background-color:limegreen;
-        width:200px;
-        text-align:center;
-        padding:6px;
-        text-decoration:none;
-        font-size: 15px;
-      }
-      a:hover,a:active
-      {
-        background-color:lime;
-      }
-      #tiaozhuan
-      {
-        display: inline-block;
-        border-radius: 4px;
-        background-color: limegreen;
-        border: none;
-        color: #FFF;
-        text-align: center;
-        font-size: 15px;
-        padding: 5px;
-        width: 100px;
-        transition: all 0.5s;
-        cursor: pointer;
-        margin: 5px;
-      }
-      .error{
-	       color:red;
-       }
+        p.one {
+            outline-style: solid;
+            outline-width: 3px;
+            border: 1px solid green;
+            width: 580px;
+            height: 300px;
+        }
+
+        .button {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: limegreen;
+            border: none;
+            color: #FFF;
+            text-align: center;
+            font-size: 15px;
+            padding: 5px;
+            width: 100px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button span:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button:hover span {
+            padding-right: 25px;
+        }
+
+        .button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+
+        .control-label {
+            padding: 10px;
+            margin: 10px;
+            border: 10px;
+            font-size: 15px;
+        }
+
+        .controls {
+            padding: 15px;
+            margin: 10px;
+            border: 10px;
+
+        }
+
+        a:link, a:visited {
+            border-radius: 4px;
+            font-weight: bold;
+            color: #FFF;
+            background-color: limegreen;
+            width: 200px;
+            text-align: center;
+            padding: 6px;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        a:hover, a:active {
+            background-color: lime;
+        }
+
+        #tiaozhuan {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: limegreen;
+            border: none;
+            color: #FFF;
+            text-align: center;
+            font-size: 15px;
+            padding: 5px;
+            width: 100px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .error {
+            color: red;
+        }
     </style>
 
     <script>
-      $(document).ready(function(){
-        $("#buzhou1_tijiao").click(function(){
-          var check = $("#optionsRadios1").is(':checked');
-          if(check === true)
-          {
-            $("#buzhou1").hide();
-            $("#firstbuzhou").removeClass("current");
-            $("#firstbuzhou").addClass("finished");
-            $("#firstbuzhou_content").empty();
-            $("#firstbuzhou_content").html("<i class='sui-icon icon-pc-right'></i>");
-            $("#secondbuzhou").removeClass("todo");
-            $("#secondbuzhou").addClass("current");
-            $("#buzhou2").show();
-          }
+        $(document).ready(function () {
+            $("#buzhou1_tijiao").click(function () {
+                var check = $("#optionsRadios1").is(':checked');
+                if (check === true) {
+                    $("#buzhou1").hide();
+                    $("#firstbuzhou").removeClass("current");
+                    $("#firstbuzhou").addClass("finished");
+                    $("#firstbuzhou_content").empty();
+                    $("#firstbuzhou_content").html("<i class='sui-icon icon-pc-right'></i>");
+                    $("#secondbuzhou").removeClass("todo");
+                    $("#secondbuzhou").addClass("current");
+                    $("#buzhou2").show();
+                }
+            });
         });
-      });
-      $.validator.setDefaults({
-        submitHandler: function() {
-          $("#buzhou2").hide();
-          $("#secondbuzhou").removeClass("current");
-          $("#secondbuzhou").addClass("finished");
-          $("#secondbuzhou_content").empty();
-          $("#secondbuzhou_content").html("<i class='sui-icon icon-pc-right'></i>");
-          $("#thirdbuzhou").removeClass("todo");
-          $("#thirdbuzhou").addClass("current");
-          $("#buzhou3").show();
-        }
-      });
+        $.validator.setDefaults({
+            submitHandler: function () {
+                $("#buzhou2").hide();
+                $("#secondbuzhou").removeClass("current");
+                $("#secondbuzhou").addClass("finished");
+                $("#secondbuzhou_content").empty();
+                $("#secondbuzhou_content").html("<i class='sui-icon icon-pc-right'></i>");
+                $("#thirdbuzhou").removeClass("todo");
+                $("#thirdbuzhou").addClass("current");
+                $("#buzhou3").show();
+            }
+        });
 
-      $().ready(function() {
-	       // 提交时验证表单
-	        var validator = $("#form1").validate({
-		          errorPlacement: function(error, element)
-              {
-			             // Append error within linked label
-			            $( element ).closest( "form" ).find( "label[for='" + element.attr( "id" ) + "']" ).append( error );
-		          },
-		          errorElement: "span",
-		          messages: {
-			          password: {
-				          required: " (必需字段)",
-				          minlength: " (亲，密码必须是6-12位哦)",
-				          maxlength: " (亲，密码必须是6-12位哦)"
-			          },
-                email: {
-                  required: " (亲，你还没填邮箱呢)",
-                  email: " (邮箱不要瞎填哦)"
+        $().ready(function () {
+            // 提交时验证表单
+            var validator = $("#form1").validate({
+                errorPlacement: function (error, element) {
+                    // Append error within linked label
+                    $(element).closest("form").find("label[for='" + element.attr("id") + "']").append(error);
                 },
-                repassword: {
-                  required: "请输入密码",
-                  equalTo: "两次密码输入不一致"
-                },
-                identity:{
-                  required: "请输入身份证"
-                }
-		          },
-              rules: {
-	              name: {
-	                required: true,
-	                isname: true
-	               },
-	              password: {
-	                required: true,
-	                minlength: 6,
-                  maxlength: 12
-	               },
-	              repassword: {
-	                required: true,
-	                equalTo: "#password"
-	               },
-	              email: {
-	                required: true,
-	                email: true
-                },
-                identity:{
-	                required: true,
-                  iscard: true
-                }
-	            },
-              submitHandler: function(form) {  //通过之后回调
-                var param = $("#form1").serialize();
-                $.ajax({
-                  url : "test.php",
-                  type : "post",
-                  dataType : "json",
-                  data: param,
-                  success : function(result) {
-                    if(result=='success') {
-                      location.href='allRequisitionList.action';
-                    } else {
-                      var jsonObj = eval('('+result+')');
+                errorElement: "span",
+                messages: {
+                    password: {
+                        required: " (必需字段)",
+                        minlength: " (亲，密码必须是6-12位哦)",
+                        maxlength: " (亲，密码必须是6-12位哦)"
+                    },
+                    email: {
+                        required: " (亲，你还没填邮箱呢)",
+                        email: " (邮箱不要瞎填哦)"
+                    },
+                    repassword: {
+                        required: "请输入密码",
+                        equalTo: "两次密码输入不一致"
+                    },
+                    identity: {
+                        required: "请输入身份证"
                     }
-                  }
-                });
-              },
-              invalidHandler: function(form, validator) {  //不通过回调
-                return false;
-              }
-	           });
-    });
+                },
+                rules: {
+                    name: {
+                        required: true,
+                        isname: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 6,
+                        maxlength: 12
+                    },
+                    repassword: {
+                        required: true,
+                        equalTo: "#password"
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    identity: {
+                        required: true,
+                        iscard: true
+                    }
+                }
+            });
+        });
+        $(document).ready(function () {
+            $("#buzhou3_tijiao").click(function () {
+                $.post("test.php",
+                        {
+                            name: "Donald Duck",
+                            city: "Duckburg"
+                        },
+                        function (data, status) {
+                            alert("Data: " + data + "\nStatus: " + status);
+                        });
+            });
+        });
     </script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row" id="headline-container">
-    	   <h1 class="col-md-12">
-    		    <span><img src="images/yuantuwang.jpg" width="70" height="70" alt="some_text">&nbsp;&nbsp;</span><em><strong>远途网<span>&nbsp;&nbsp;&nbsp;&nbsp;您的出行管家</span></strong></em>
-         </h1>
-      </div>
+</head>
+<body>
+<div class="container">
+    <div class="row" id="headline-container">
+        <h1 class="col-md-12">
+            <span><img src="images/yuantuwang.jpg" width="70" height="70"
+                       alt="some_text">&nbsp;&nbsp;</span><em><strong>远途网<span>&nbsp;&nbsp;&nbsp;&nbsp;您的出行管家</span></strong></em>
+        </h1>
     </div>
-    <hr size=1 style="height:3px;background-color: green">
-    <div class="container">
-      <div class="row">
+</div>
+<hr size=1 style="height:3px;background-color: green">
+<div class="container">
+    <div class="row">
         <div class="col-md-12" id="content-container">
-          <div class="sui-steps steps-auto">
-            <div class="wrap">
-              <div class="current" id="firstbuzhou">
-                <label><span class="round" id="firstbuzhou_content">1</span><span>第一步 同意协议</span></label><i class="triangle-right-bg"></i><i class="triangle-right"></i>
-              </div>
+            <div class="sui-steps steps-auto">
+                <div class="wrap">
+                    <div class="current" id="firstbuzhou">
+                        <label><span class="round" id="firstbuzhou_content">1</span><span>第一步 同意协议</span></label><i
+                            class="triangle-right-bg"></i><i class="triangle-right"></i>
+                    </div>
+                </div>
+                <div class="wrap">
+                    <div class="todo" id="secondbuzhou">
+                        <label><span class="round" id="secondbuzhou_content">2</span><span>第二步 填写相关信息</span></label><i
+                            class="triangle-right-bg"></i><i class="triangle-right"></i>
+                    </div>
+                </div>
+                <div class="wrap">
+                    <div class="todo" id="thirdbuzhou">
+                        <label><span class="round" id="thirdbuzhou_content">3</span><span>第三步 验证信息</span></label>
+                    </div>
+                </div>
             </div>
-            <div class="wrap">
-              <div class="todo" id="secondbuzhou">
-                <label><span class="round" id="secondbuzhou_content">2</span><span>第二步 填写相关信息</span></label><i class="triangle-right-bg"></i><i class="triangle-right"></i>
-              </div>
-            </div>
-            <div class="wrap">
-              <div class="todo" id="thirdbuzhou">
-                <label><span class="round" id="thirdbuzhou_content">3</span><span>第三步 验证信息</span></label>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
-    <div class="container" id="buzhou1">
-      <div class="row">
+</div>
+<div class="container" id="buzhou1">
+    <div class="row">
         <div class="col-sm-offset-3 col-md-12">
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <div class="scroll">
-            <p class="one">
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;</span>
-              注册协议
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              【审慎阅读】您在申请注册流程中点击同意前，应当认真阅读以下协议。请您务必
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              审慎阅读、充分理解协议中相关条款内容，其中包括：
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              1、与您约定免除或限制责任的条款；
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              2、与您约定法律适用和管辖的条款；
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              3、其他以粗体下划线标识的重要条款。
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              如您对协议有任何疑问，可向平台客服咨询。
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              【特别提示】当您按照注册页面提示填写信息、阅读并同意协议且完成全部注册程
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              序后，即表示您已充分阅读、理解并接受协议的全部内容。如您因平
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              台服务与远途发生争议的，适用《远途平台服务协议》处理。如您在使
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              用平台服务过程中与其他用户发生争议的，依您与其他用户达成的协议
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              处理。阅读协议的过程中，如果您不同意相关协议或其中任何条款约定
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              ，您应立即停止注册程序。
-            </p>
-          </div>
-        </div>
-        <hr class="text-center" />
-        <div class="col-sm-offset-5 col-md-12">
-          <div id="choose" style="padding:12px;">
-            <div class="radio-inline">
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-              <label>
-                <input type="radio" name="optionsRadiosagree" id="optionsRadios1"
-                  value="option1" checked> 同意
-              </label>
-            </div>
             <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            <div class="radio-inline">
-              <label>
-                <input type="radio" name="optionsRadiosagree" id="optionsRadios2"
-                  value="option2"> 不同意
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-offset-5 col-md-12">
-        </div>
-        <div class="col-sm-offset-5 col-md-12">
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <button class="button" id="buzhou1_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
-        </div>
-      </div>
-    </div>
-    <div class="container" id="buzhou2">
-      <div class="row">
-         <div class="col-md-12 col-sm-offset-4">
-           <form class="cmxform" id="form1" method="get" action="">
-             <div>
-               <label for="name" class="control-label">真实姓名：</label>
-               <div class="controls">
-                 <input type="text" id="name" placeholder="必填" name="name">
-               </div>
-             </div>
-             <div>
-               <label for="userType" class="control-label">用户类型：</label>
-               <div id="choose" style="padding:12px;">
-                 <div class="radio-inline">
-                   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                   <label>
-                     <input type="radio" name="userType" id="Radios1"
-                       value="buyer" checked> 买家
-                   </label>
-                 </div>
-                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                 <div class="radio-inline">
-                   <label>
-                     <input type="radio" name="userType" id="Radios2"
-                       value="sellerHotel"> 卖家(酒店)
-                   </label>
-                 </div>
-                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                 <div class="radio-inline">
-                   <label>
-                     <input type="radio" name="userType" id="Radios3"
-                       value="sellerFlight"> 卖家(机票)
-                   </label>
-                 </div>
-               </div>
-             </div>
-             <div>
-               <label for="email" class="control-label">电子邮件：</label>
-               <div class="controls">
-                 <input type="text" id="email" placeholder="必填" name="email">
-               </div>
-             </div>
-             <div>
-               <label for="identity" class="control-label">身份证：</label>
-               <div class="controls">
-                 <input type="text" id="identity" placeholder="必填" name="identity">
-               </div>
-             </div>
-             <div>
-               <label for="password" class="control-label">密码：</label>
-               <div class="controls">
-                 <input type="password" id="password" placeholder="必填" name="password">
-               </div>
-             </div>
-             <div class="control-group">
-               <label for="repassword" class="control-label">重复密码：</label>
-               <div class="controls">
-                 <input type="password" id="repassword" placeholder="保持一致" name="repassword">
-               </div>
-             </div>
-             <div>
-               <label class="control-label"></label>
-               <div class="controls">
-                 <button class="button" id="buzhou2_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
-               </div>
-             </div>
-           </form>
-         </div>
-       </div>
-     </div>
-     <div class="container" id="buzhou3">
-       <div class="row">
-         <div class="col-md-12 col-sm-offset-5">
-           <div>
-             <h2><span>&nbsp;&nbsp;</span>注册成功</h2>
-           </div>
-         </div>
-         <div class="col-md-12 col-sm-offset-4">
-           <div>
-             <h3><span>&nbsp;&nbsp;</span>请到注册邮箱点击邮件激活邮箱！</h3>
-           </div>
-         </div>
-         <div class="col-md-12 col-sm-offset-5">
-           <div class="controls">
-             <a href="zhujiemian.html" id="tiaozhuan">跳转</a>
-           </div>
-         </div>
-      </div>
-    </div>
-    <button class="button" id="buzhou3_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
-    <script>
 
-    </script>
-    <script>
-      $("#buzhou2").hide();
-      $("#buzhou3").hide();
-    </script>
-   </body>
+            <div class="scroll">
+                <p class="one">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    注册协议
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    【审慎阅读】您在申请注册流程中点击同意前，应当认真阅读以下协议。请您务必
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    审慎阅读、充分理解协议中相关条款内容，其中包括：
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    1、与您约定免除或限制责任的条款；
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    2、与您约定法律适用和管辖的条款；
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    3、其他以粗体下划线标识的重要条款。
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    如您对协议有任何疑问，可向平台客服咨询。
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    【特别提示】当您按照注册页面提示填写信息、阅读并同意协议且完成全部注册程
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    序后，即表示您已充分阅读、理解并接受协议的全部内容。如您因平
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    台服务与远途发生争议的，适用《远途平台服务协议》处理。如您在使
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    用平台服务过程中与其他用户发生争议的，依您与其他用户达成的协议
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    处理。阅读协议的过程中，如果您不同意相关协议或其中任何条款约定
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    ，您应立即停止注册程序。
+                </p>
+            </div>
+        </div>
+        <hr class="text-center"/>
+        <div class="col-sm-offset-5 col-md-12">
+            <div id="choose" style="padding:12px;">
+                <div class="radio-inline">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <label>
+                        <input type="radio" name="optionsRadiosagree" id="optionsRadios1"
+                               value="option1" checked> 同意
+                    </label>
+                </div>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="optionsRadiosagree" id="optionsRadios2"
+                               value="option2"> 不同意
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-offset-5 col-md-12">
+        </div>
+        <div class="col-sm-offset-5 col-md-12">
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button class="button" id="buzhou1_tijiao" type="submit"
+                   style="vertical-align:middle"><span>下一步</span></button>
+        </div>
+    </div>
+</div>
+<div class="container" id="buzhou2">
+    <div class="row">
+        <div class="col-md-12 col-sm-offset-4">
+            <form class="cmxform" id="form1" method="post" action="register.php">
+                <div>
+                    <label for="name" class="control-label">真实姓名：</label>
+
+                    <div class="controls">
+                        <input type="text" id="name" placeholder="必填" name="name">
+                    </div>
+                </div>
+                <div>
+                    <label for="userType" class="control-label">用户类型：</label>
+
+                    <div id="userType" style="padding:12px;">
+                        <div class="radio-inline">
+                            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            <label>
+                                <input type="radio" name="userType" id="Radios1"
+                                       value="buyer" checked> 买家
+                            </label>
+                        </div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="userType" id="Radios2"
+                                       value="sellerHotel"> 卖家(酒店)
+                            </label>
+                        </div>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                        <div class="radio-inline">
+                            <label>
+                                <input type="radio" name="userType" id="Radios3"
+                                       value="sellerFlight"> 卖家(机票)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div id="emailDiv">
+                    <label for="email" class="control-label">电子邮件：</label>
+
+                    <div class="controls">
+                        <input type="text" id="email" placeholder="必填" name="email">
+                        <a id="verifyInfo"></a>
+                    </div>
+                </div>
+                <div>
+                    <label for="identity" class="control-label">身份证：</label>
+
+                    <div class="controls">
+                        <input type="text" id="identity" placeholder="必填" name="identity">
+                    </div>
+                </div>
+                <div>
+                    <label for="password" class="control-label">密码：</label>
+
+                    <div class="controls">
+                        <input type="password" id="password" placeholder="必填" name="password">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="repassword" class="control-label">重复密码：</label>
+
+                    <div class="controls">
+                        <input type="password" id="repassword" placeholder="保持一致" name="repassword">
+                    </div>
+                </div>
+                <div>
+                    <label class="control-label"></label>
+
+                    <div class="controls">
+                        <button class="button" id="buzhou2_tijiao" type="submit" style="vertical-align:middle">
+                            <span>下一步</span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+<div class="container" id="buzhou3">
+    <div class="row">
+        <div class="col-md-12 col-sm-offset-5">
+            <div>
+                <h2><span>&nbsp;&nbsp;</span>注册成功</h2>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-offset-4">
+            <div>
+                <h3><span>&nbsp;&nbsp;</span>请到注册邮箱点击邮件激活邮箱！</h3>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-offset-5">
+            <div class="controls">
+                <a href="zhujiemian.html" id="tiaozhuan">跳转</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById("email").oninput = function () {
+        var urlVerify = "check_register.php?email=" + document.getElementById("email").value + "&action=verify";
+        var xmlhttp = $.ajax({url: urlVerify, async: false});
+        console.log(xmlhttp.responseText);
+        if (xmlhttp.responseText == "success") {
+            $("#button2_tijiao").enabled = true;
+            document.getElementById("verifyInfo").innerHTML = "email valid!";
+        } else if (xmlhttp.responseText == "fail") {
+            $("#button2_tijiao").enabled = false;
+            document.getElementById("verifyInfo").innerHTML = "email has been used!";
+        }
+    };
+</script>
+<script>
+    $("#buzhou2").hide();
+    $("#buzhou3").hide();
+</script>
+</body>
 </html>

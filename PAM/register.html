@@ -446,7 +446,7 @@
              </div>
              <div>
                <label for="userType" class="control-label">用户类型：</label>
-               <div id="choose" style="padding:12px;">
+               <div id="userType" style="padding:12px;">
                  <div class="radio-inline">
                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                    <label>
@@ -470,7 +470,7 @@
                  </div>
                </div>
              </div>
-             <div>
+             <div id="emailDiv">
                <label for="email" class="control-label">电子邮件：</label>
                <div class="controls">
                  <input type="text" id="email" placeholder="必填" name="email">
@@ -526,12 +526,12 @@
     <button class="button" id="buzhou3_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
     <script>
         $("#email").onfocus = function() {
-            var urlVerify = "register.php?email=" + $("#email").value + "&action=verify";
+            var urlVerify = "register.php?email=" + $("#email")[0].value + "&action=verify";
             var xmlhttp = $.ajax({url: urlVerify, async: false});
             if(xmlhttp.responseText) {
-
+                $("#button2_tijiao").enabled = true;
             } else {
-
+                $("#button2_tijiao").enabled = false;
             }
         };
     </script>

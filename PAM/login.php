@@ -6,6 +6,8 @@
  * Time: 下午1:50
  */
 require_once('common/db.php');
+session_start();
+
 $email = $_POST['email'];
 $password = $_POST['password'];
 $userType = $_POST['userType'];
@@ -26,9 +28,10 @@ if( !empty($email) && !empty($password) && !empty($userType) ) {
     $row = mysqli_fetch_array($result);
     if($row) {
         //success jump to main page
-        session_start();
         $_SESSION['userType'] = $userType;
         $_SESSION['email'] = $row['email'];
+        $_SESSION['login'] = true;
+
         if($userType === "seller") {
             $_SESSION['uid'] = $row['s_id'];
         } elseif($userType === "buyer") {

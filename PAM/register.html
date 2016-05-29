@@ -430,7 +430,7 @@
         <div class="col-sm-offset-5 col-md-12">
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-          <button class="button" id="buzhou1_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
+          <input class="button" id="buzhou1_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
         </div>
       </div>
     </div>
@@ -528,9 +528,9 @@
         $("#email").onfocus = function() {
             var urlVerify = "register.php?email=" + $("#email")[0].value + "&action=verify";
             var xmlhttp = $.ajax({url: urlVerify, async: false});
-            if(xmlhttp.responseText) {
+            if(xmlhttp.responseText == "success") {
                 $("#button2_tijiao").enabled = true;
-            } else {
+            } else if(xmlhttp.responseText == "fail"){
                 $("#button2_tijiao").enabled = false;
             }
         };

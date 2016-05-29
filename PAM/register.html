@@ -11,6 +11,10 @@
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/sui.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/messages_zh.js"></script>
+    <script src="js/additional-methods.js"></script>
     <!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>
@@ -103,7 +107,7 @@
       }
       .control-label
       {
-        padding: 5px;
+        padding: 10px;
         margin: 10px;
         border: 10px;
         font-size: 15px;
@@ -146,21 +150,30 @@
         cursor: pointer;
         margin: 5px;
       }
+      .error{
+	       color:red;
+       }
     </style>
 
     <script>
       $(document).ready(function(){
         $("#buzhou1_tijiao").click(function(){
-          $("#buzhou1").hide();
-          $("#firstbuzhou").removeClass("current");
-          $("#firstbuzhou").addClass("finished");
-          $("#firstbuzhou_content").empty();
-          $("#firstbuzhou_content").html("<i class='sui-icon icon-pc-right'></i>");
-          $("#secondbuzhou").removeClass("todo");
-          $("#secondbuzhou").addClass("current");
-          $("#buzhou2").show();
+          var check = $("#optionsRadios1").is(':checked');
+          if(check === true)
+          {
+            $("#buzhou1").hide();
+            $("#firstbuzhou").removeClass("current");
+            $("#firstbuzhou").addClass("finished");
+            $("#firstbuzhou_content").empty();
+            $("#firstbuzhou_content").html("<i class='sui-icon icon-pc-right'></i>");
+            $("#secondbuzhou").removeClass("todo");
+            $("#secondbuzhou").addClass("current");
+            $("#buzhou2").show();
+          }
         });
-        $("#buzhou2_tijiao").click(function(){
+      });
+      $.validator.setDefaults({
+        submitHandler: function() {
           $("#buzhou2").hide();
           $("#secondbuzhou").removeClass("current");
           $("#secondbuzhou").addClass("finished");
@@ -169,15 +182,80 @@
           $("#thirdbuzhou").removeClass("todo");
           $("#thirdbuzhou").addClass("current");
           $("#buzhou3").show();
+        }
+      });
+
+      $().ready(function() {
+	       // 提交时验证表单
+	        var validator = $("#form1").validate({
+		          errorPlacement: function(error, element)
+              {
+			             // Append error within linked label
+			            $( element ).closest( "form" ).find( "label[for='" + element.attr( "id" ) + "']" ).append( error );
+		          },
+		          errorElement: "span",
+		          messages: {
+			          password: {
+				          required: " (必需字段)",
+				          minlength: " (亲，密码必须是6-12位哦)",
+				          maxlength: " (亲，密码必须是6-12位哦)"
+			          },
+                email: {
+                  required: " (亲，你还没填邮箱呢)",
+                  email: " (邮箱不要瞎填哦)"
+                },
+                repassword: {
+                  required: "请输入密码",
+                  equalTo: "两次密码输入不一致"
+                },
+                identity:{
+                  required: "请输入身份证"
+                }
+		          },
+              rules: {
+	              name: {
+	                required: true,
+	                isname: true
+	               },
+	              password: {
+	                required: true,
+	                minlength: 6,
+                  maxlength: 12
+	               },
+	              repassword: {
+	                required: true,
+	                equalTo: "#password"
+	               },
+	              email: {
+	                required: true,
+	                email: true
+                },
+                identity:{
+	                required: true,
+                  iscard: true
+                }
+	            }
+	        });
+    });
+    $(document).ready(function(){
+      $("#buzhou3_tijiao").click(function(){
+        $.post("test.php",
+        {
+          name:"Donald Duck",
+          city:"Duckburg"
+        },
+        function(data,status){
+          alert("Data: " + data + "\nStatus: " + status);
         });
       });
+    });
     </script>
   </head>
   <body>
     <div class="container">
       <div class="row" id="headline-container">
     	   <h1 class="col-md-12">
-    		    <em><strong>远途网<span>&nbsp;&nbsp;&nbsp;&nbsp;您的出行管家</span></strong></em>
+    		    <span><img src="images/yuantuwang.jpg" width="70" height="70" alt="some_text">&nbsp;&nbsp;</span><em><strong>远途网<span>&nbsp;&nbsp;&nbsp;&nbsp;您的出行管家</span></strong></em>
          </h1>
       </div>
     </div>
@@ -342,7 +420,7 @@
             <div class="radio-inline">
               <label>
                 <input type="radio" name="optionsRadiosagree" id="optionsRadios2"
-                  value="option2" checked> 不同意
+                  value="option2"> 不同意
               </label>
             </div>
           </div>
@@ -359,64 +437,64 @@
     <div class="container" id="buzhou2">
       <div class="row">
          <div class="col-md-12 col-sm-offset-4">
-           <form id="form1" class="sui-form form-horizontal" novalidate="novalidate">
-             <div class="control-group">
+           <form class="cmxform" id="form1" method="get" action="">
+             <div>
                <label for="name" class="control-label">真实姓名：</label>
                <div class="controls">
-                 <input type="text" id="name" placeholder="必填" data-rules="required" name="name">
+                 <input type="text" id="name" placeholder="必填" name="name">
                </div>
              </div>
-             <div class="control-group">
-               <label for="name" class="control-label">用户类型：</label>
+             <div>
+               <label for="userType" class="control-label">用户类型：</label>
                <div id="choose" style="padding:12px;">
                  <div class="radio-inline">
                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                    <label>
-                     <input type="radio" name="userType" id="optionsRadios1"
+                     <input type="radio" name="userType" id="Radios1"
                        value="buyer" checked> 买家
                    </label>
                  </div>
                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                  <div class="radio-inline">
                    <label>
-                     <input type="radio" name="userType" id="optionsRadios2"
+                     <input type="radio" name="userType" id="Radios2"
                        value="sellerHotel"> 卖家(酒店)
                    </label>
                  </div>
-				 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                  <div class="radio-inline">
                    <label>
-                     <input type="radio" name="userType" id="optionsRadios2"
+                     <input type="radio" name="userType" id="Radios3"
                        value="sellerFlight"> 卖家(机票)
                    </label>
                  </div>
                </div>
              </div>
-             <div class="control-group">
+             <div>
                <label for="email" class="control-label">电子邮件：</label>
                <div class="controls">
-                 <input type="text" id="email" placeholder="必填" data-rules="required|email" name="email">
+                 <input type="text" id="email" placeholder="必填" name="email">
                </div>
              </div>
-             <div class="control-group">
+             <div>
                <label for="identity" class="control-label">身份证：</label>
                <div class="controls">
-                 <input type="text" id="identity" placeholder="必填" data-rules="required|iscard=true" name="identity">
+                 <input type="text" id="identity" placeholder="必填" name="identity">
                </div>
              </div>
-             <div class="control-group">
+             <div>
                <label for="password" class="control-label">密码：</label>
                <div class="controls">
-                 <input type="password" id="password" placeholder="必填" data-rules="required" name="password">
+                 <input type="password" id="password" placeholder="必填" name="password">
                </div>
              </div>
              <div class="control-group">
                <label for="repassword" class="control-label">重复密码：</label>
                <div class="controls">
-                 <input type="password" id="repassword" placeholder="保持一致" data-rules="required|match=password" name="repassword">
+                 <input type="password" id="repassword" placeholder="保持一致" name="repassword">
                </div>
              </div>
-             <div class="control-group">
+             <div>
                <label class="control-label"></label>
                <div class="controls">
                  <button class="button" id="buzhou2_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
@@ -445,46 +523,9 @@
          </div>
       </div>
     </div>
+    <button class="button" id="buzhou3_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
     <script>
-      var iscard = function(value, element, param) {
-        var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-        var card = trim(value);
-        if(reg.test(card) === false)
-        {
-          return  false;
-        }
-        return true;
-      };
-      $.validate.setRule("iscard", iscard, '亲，身份证输入有误');
-      var isname = function(value, element, param) {
-        var reg = /^[\u4e00-\u9fa5]{2,4}$/;
-        var name = trim(value);
-        if(reg.test(name) === false)
-        {
-             return false;
-        }
-        return true;
-      };
-      $.validate.setRule("isname", isname, '亲，姓名(至少两个汉字)输入有误');
-      $("#form1").validate({
-        rules: {
-          name:
-          {
-            isname: true
-          },
-          password:
-          {
-            required: true,
-            minlength: 6,
-            maxlength: 12
-          }
-        },
-        messages:
-        {
-          email: ["亲，你还没填邮箱呢", "邮箱不要瞎填哦"],
-          password: "亲，密码必须是6-12位哦"
-        }
-     })
+
     </script>
     <script>
       $("#buzhou2").hide();

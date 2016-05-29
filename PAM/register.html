@@ -437,7 +437,7 @@
     <div class="container" id="buzhou2">
       <div class="row">
          <div class="col-md-12 col-sm-offset-4">
-           <form class="cmxform" id="form1" method="get" action="">
+           <form class="cmxform" id="form1" method="post" action="register.php">
              <div>
                <label for="name" class="control-label">真实姓名：</label>
                <div class="controls">
@@ -525,7 +525,15 @@
     </div>
     <button class="button" id="buzhou3_tijiao" type="submit" style="vertical-align:middle"><span>下一步</span></button>
     <script>
+        $("#email").onfocus = function() {
+            var urlVerify = "register.php?email=" + $("#email").value + "&action=verify";
+            var xmlhttp = $.ajax({url: urlVerify, async: false});
+            if(xmlhttp.responseText) {
 
+            } else {
+
+            }
+        };
     </script>
     <script>
       $("#buzhou2").hide();

@@ -58,11 +58,13 @@ http://115.159.36.21/payment/Booking/index.php
 
 ##数据库表结构定义
 * admin(a_id, name, password, type) //管理root,user,good
-* seller(s_id, username, password, balance, sellType(hotel or flight), information, tel, email, real_name)
-* buyer(b_id, username, password, balance, real_name, email, tel, )
+* seller(s_id, username, password, balance, sellType(hotel or flight), information, tel, email, real_name,
+           sex, birthday, status)
+* buyer(b_id, username, password, balance, real_name, email, tel, sex, birthday, status)
 * hotel(h_id, s_id, name,  price, information, total)
 * flight(f_id, s_id, name, price, information, from, to, time, total)
 * order(o_id, seller_id, buyer_id, state, type, g_id, price, num, begintime, endtime)
+* IDauthReq(u_id, userType, realName, ID, processed) 身份认证处理请求表
 
 
 ##时间计划

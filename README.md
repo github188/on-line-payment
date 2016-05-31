@@ -67,6 +67,55 @@ http://115.159.36.21/payment/Booking/index.php
 * IDauthReq(u_id, userType, realName, ID, processed) 身份认证处理请求表
 
 
+##database table desc
+
+###buyer
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| b_id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| username  | varchar(30) | NO   |     | NULL    |                |
+| password  | varchar(40) | NO   |     | NULL    |                |
+| balance   | int(11)     | YES  |     | 0       |                |
+| telephone | varchar(20) | YES  |     | NULL    |                |
+| email     | varchar(30) | YES  |     | NULL    |                |
+| real_name | varchar(30) | YES  |     | NULL    |                |
+| IDcardNum | varchar(20) | YES  |     | NULL    |                |
+| status    | varchar(10) | NO   |     | NULL    |                |
+| sex       | varchar(5)  | YES  |     | NULL    |                |
+| birthday  | date        | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+
+###seller
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| s_id        | int(11)      | NO   | PRI | NULL    | auto_increment |
+| username    | varchar(30)  | NO   |     | NULL    |                |
+| password    | varchar(40)  | NO   |     | NULL    |                |
+| balance     | int(11)      | YES  |     | 0       |                |
+| sellerType  | varchar(20)  | YES  |     | NULL    |                |
+| information | varchar(200) | YES  |     | NULL    |                |
+| telephone   | varchar(20)  | YES  |     | NULL    |                |
+| email       | varchar(30)  | YES  |     | NULL    |                |
+| real_name   | varchar(30)  | YES  |     | NULL    |                |
+| IDcardNum   | varchar(20)  | YES  |     | NULL    |                |
+| status      | varchar(10)  | NO   |     | NULL    |                |
+| sex         | varchar(10)  | YES  |     | NULL    |                |
+| birthday    | date         | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+
+IDauthReq
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| u_id      | int(11)     | NO   |     | NULL    |       |
+| userType  | varchar(10) | NO   |     | NULL    |       |
+| realName  | varchar(40) | NO   |     | NULL    |       |
+| ID        | varchar(25) | NO   |     | NULL    |       |
+| processed | tinyint(1)  | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
 ##时间计划
 * 第二周 (5.12)周四讨论
 * 第三周 (5.18)交初期报告

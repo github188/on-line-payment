@@ -7,7 +7,6 @@
     <title>远途网</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!--[if lt IE 9]>
@@ -57,7 +56,6 @@
         cursor: pointer;
         margin: 5px;
       }
-
       .button span
       {
         cursor: pointer;
@@ -65,7 +63,6 @@
         position: relative;
         transition: 0.5s;
       }
-
       .button span:after
       {
         content: '»';
@@ -75,12 +72,10 @@
         right: -20px;
         transition: 0.5s;
       }
-
       .button:hover span
       {
         padding-right: 25px;
       }
-
       .button:hover span:after
       {
         opacity: 1;
@@ -128,15 +123,12 @@
         margin: 5px;
       }
     </style>
-    <script>
-
-  </script>
   </head>
   <body>
     <div class="container">
       <div class="row" id="headline-container">
-    	   <h1 class="col-md-12">
-    		    <span><img src="images/yuantuwang.jpg" width="70" height="70" alt="some_text">&nbsp;&nbsp;</span><em><strong>远途网<span>&nbsp;&nbsp;&nbsp;&nbsp;您的出行管家</span></strong></em>
+    	  <h1 class="col-md-12">
+    		    <span><img src="yuantuwang.jpg" width="70" height="70" alt="some_text">&nbsp;&nbsp;</span><em><strong>远途网<span>&nbsp;&nbsp;&nbsp;&nbsp;您的出行管家</span></strong></em>
          </h1>
       </div>
     </div>
@@ -164,17 +156,17 @@
           </h3>
     	  </div>
     	  <div class="col-md-7">
-    		  <form class="form-horizontal" role="form" style="padding-top: 20px" method="post" action="login.php">
+    		  <div class="form-horizontal" id="form" style="padding-top: 20px">
     			  <div class="form-group">
     				  <label class="col-sm-2 control-label" for="inputusername">用户名</label>
     				  <div class="col-sm-6">
-                <input type="text" class="form-control" id="inputusername" placeholder="请输入邮箱" name="email">
+                <input type="text" class="form-control" id="email" placeholder="请输入邮箱" name="email">
     			    </div>
     	      </div>
     	      <div class="form-group">
     		      <label class="col-sm-2 control-label" for="inputpassword">密码</label>
     			    <div class="col-sm-6">
-                <input type="text" class="form-control" id="inputpassword" placeholder="请输入密码" name="password">
+                <input type="text" class="form-control" id="password" placeholder="请输入密码" name="password">
     			    </div>
     	      </div>
             <div class="form-group">
@@ -204,7 +196,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                     <button class="button" type="submit" style="vertical-align:middle"><span>登陆</span></button>
+                     <button class="button" id="search" type="submit" style="vertical-align:middle"><span>登陆</span></button><span><p id="searchResult"></p></span>
                 </div>
             </div>
             <div class="form-group">
@@ -212,10 +204,37 @@
                     <h4> 还没注册？<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="register.html" id="register">注册</a></h4>
                 </div>
             </div>
-    		  </form>
     	  </div>
-      </div>
     </div>
-
+    <script>
+      document.getElementById("search").onclick = function()
+      {
+	      var request = new XMLHttpRequest();
+        var userType = document.getElementsByName("userType");
+        var userTypeID;
+        for(var i = 0; i < userType.length; i++)
+        {
+          if(userType[i].checked)
+            userTypeID = userType[i].value;
+        }
+	      request.open("GET", "login.php?email=" + document.getElementById("email").value + "&password=" + document.getElementById("password").value + "&userType=" + userTypeID);
+	      request.send();
+	      request.onreadystatechange = function()
+        {
+		      if (request.readyState===4)
+          {
+			      if (request.status===200)
+            {
+              if(request.responseText == "notexist")
+				          document.getElementById("searchResult").innerHTML = "invalid email or password";
+			      }
+            else
+            {
+				      alert("发生错误：" + request.status);
+			      }
+		      }
+	       }
+      }
+  </script>
   </body>
 </html>

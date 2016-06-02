@@ -5,22 +5,16 @@
  * Date: 2016/5/28
  * Time: 14:23
  */
+header("Content-Type: text/plain;charset=utf-8");
 require_once('common/db.php');
 session_start();
 
-$realName ="2";
-$userType = "sellerFlight";
-$email ="sellerFlight1";
-$ID ="seller";
-$password ="seller";
-$password2 = "seller";
-
-//$realName =$_POST['name'];
-//$userType = $_POST['userType'];
-//$email = $_POST['email'];
-//$ID = $_POST['identity'];
-//$password = $_POST['password'];
-//$password2 = $_POST['repassword'];
+$realName =$_POST['name'];
+$userType = $_POST['userType'];
+$email = $_POST['email'];
+$ID = $_POST['identity'];
+$password = $_POST['password'];
+$password2 = $_POST['repassword'];
 
 $conn = db_connect();
 if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !empty($password) && !empty($password2))

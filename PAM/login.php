@@ -18,6 +18,7 @@ if( !empty($email) && !empty($password) && !empty($userType) ) {
     $password = mysqli_escape_string($conn, $password);
     $password = md5($password);
     $userType = mysqli_escape_string($conn, $userType);
+    print $email;
     if( $userType === "seller") {
         $sql = 'select * from seller WHERE email = "' . $email . '"' . 'and password="' . $password . '"';
     }

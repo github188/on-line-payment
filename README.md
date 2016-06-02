@@ -6,13 +6,15 @@
 * 开发IDE一般都集成Github的功能，如果没有可以用命令行或者git gui等图形化管理工具
 * 如无必要，不用fork仓库，再提交pull request。可以直接git clone 到本地，然后直接提交到这个仓库
 * 前端界面编写是否使用模板未定
+## common 文件夹存放了全局配置文件，公用函数、类、模板.目前有发送邮件类，验证码脚本，页面模板等
 
 ###Git 常用命令
 * git clone https://github.com/onlinePayment/on-line-payment.git    #克隆仓库到本地
 * git add * 	
-* git commit -m ""
+* git commit -m "xxx"
 * git push -u origin master 	#上面三条用来向远程仓库提交代码
 * git pull 	#获取远程仓库的更新
+* 记住先git pull再push!记住先git pull再push!记住先git pull再push!
 
 ##Module 1: Personal Account Management
 * 登录注册页面

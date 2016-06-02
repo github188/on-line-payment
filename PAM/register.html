@@ -242,7 +242,7 @@
                   request.onreadystatechange = function() {
                     if (request.readyState===4) {
                       if (request.status===200) {
-                        alert("success");
+                        alert(request.responseText);
                       } else {
                         alert("发生错误：" + request.status);
                       }
@@ -539,7 +539,7 @@
     </div>
 
     <script>
-        document.getElementById("email").oninput = function () {
+        document.getElementById("email").onblur = function () {
             var urlVerify = "check_register.php?email=" + document.getElementById("email").value + "&action=verify";
             var xmlhttp = $.ajax({url: urlVerify, async: false});
             console.log(xmlhttp.responseText);

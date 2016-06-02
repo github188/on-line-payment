@@ -23,8 +23,8 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
     $userType = mysqli_escape_string($conn,$userType);
     $email = mysqli_escape_string($conn,$email);
     $ID = mysqli_escape_string($conn,$ID);
-    $password = md5($password);
-    $password2 = md5($password2);
+    $password = mysqli_escape_string($conn,$password);
+    $password2 = mysqli_escape_string($conn,$password2);
 
     if($password !== $password2){
         echo "notsame";
@@ -43,6 +43,13 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
             $set2=mysqli_query($conn,$insert1,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {
+                $getId = "select * from `buyer` where `email`= '".$email."'";
+                $result = mysqli_query($conn, $getId);
+                $row = mysqli_fetch_array($result);
+                if($row){
+                    $uid =  $row['b_id'];
+                }
+                mysqli_query($conn, "insert into IDauthReq values( $uid,'$userType','$realName','$ID',0)");
                 echo "success";
             }
             else{
@@ -64,6 +71,13 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
             $set2=mysqli_query($conn,$insert2,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {
+                $getId = "select * from `seller` where `email`= '".$email."'";
+                $result = mysqli_query($conn, $getId);
+                $row = mysqli_fetch_array($result);
+                if($row){
+                    $uid =  $row['s_id'];
+                }
+                mysqli_query($conn, "insert into IDauthReq values( $uid,'$userType','$realName','$ID',0)");
                 echo "success";
             }
             else{

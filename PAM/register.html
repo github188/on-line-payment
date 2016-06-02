@@ -236,7 +236,8 @@
                                     + "&userType=" + userTypeID
                                     + "&email=" + document.getElementById("email").value
                                     + "&identity=" + document.getElementById("identity").value
-                                    + "&password=" + document.getElementById("password").value;
+                                    + "&password=" + document.getElementById("password").value
+                                    + "&repassword=" + document.getElementById("repassword").value;
                   request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
                   request.send(data);
                   request.onreadystatechange = function() {

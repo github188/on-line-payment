@@ -15,6 +15,7 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/messages_zh.js"></script>
     <script src="js/additional-methods.js"></script>
+    <script src="js/md5.js"></script>
     <!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
       <script src="js/respond.min.js"></script>
@@ -230,14 +231,16 @@
                     if(userType[i].checked)
                       userTypeID = userType[i].value;
                   }
+                  var hash = hex_md5(document.getElementById("password").value);
+                  var rehash = hex_md5(document.getElementById("repassword").value);
                   var request = new XMLHttpRequest();
                   request.open("POST", "register.php");
                   var data = "name=" + document.getElementById("name").value
                                     + "&userType=" + userTypeID
                                     + "&email=" + document.getElementById("email").value
                                     + "&identity=" + document.getElementById("identity").value
-                                    + "&password=" + document.getElementById("password").value
-                                    + "&repassword=" + document.getElementById("repassword").value;
+                                    + "&password=" + hash
+                                    + "&repassword=" + rehash;
                   request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
                   request.send(data);
                   request.onreadystatechange = function() {

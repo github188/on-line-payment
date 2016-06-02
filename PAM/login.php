@@ -8,9 +8,9 @@
 require_once('common/db.php');
 session_start();
 
-$email = $_POST['email'];
-$password = $_POST['password'];
-$userType = $_POST['userType'];
+$email = $_GET['email'];
+$password = $_GET['password'];
+$userType = $_GET['userType'];
 
 $conn = db_connect();
 if( !empty($email) && !empty($password) && !empty($userType) ) {
@@ -38,10 +38,8 @@ if( !empty($email) && !empty($password) && !empty($userType) ) {
             $_SESSION['uid'] = $row['b_id'];
         }
         echo "$sql" . "</br>" . "login success";
-//        header("Location: ../Booking/index.php");
     } else {
-        echo "$sql" . "</br>";
-        echo "login failed";
+        echo "notexist";
 //        header("Location: register.html");
     }
 }

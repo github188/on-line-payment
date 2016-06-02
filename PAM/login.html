@@ -9,6 +9,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/md5.js"></script>
     <!--[if lt IE 9]>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/respond.min.js"></script>
@@ -222,7 +223,8 @@
                     if (userType[i].checked)
                         userTypeID = userType[i].value;
                 }
-                request.open("GET", "login.php?email=" + document.getElementById("email").value + "&password=" + document.getElementById("password").value + "&userType=" + userTypeID);
+                var hash = hex_md5(document.getElementById("password").value);
+                request.open("GET", "login.php?email=" + document.getElementById("email").value + "&password=" + hash + "&userType=" + userTypeID);
                 request.send();
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {

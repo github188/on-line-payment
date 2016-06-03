@@ -38,7 +38,7 @@ if(!empty($email) && !empty($userType) && !empty($password) && !empty($money))
             }
         }
     }
-    else if($userType === 'sellerHotel' || $userType === 'sellerFlight') {
+    else if($userType === 'seller') {
         $check2 ="select * from `seller` where `email`= '".$email."'";
         $set2 = mysqli_query($conn,$check2,MYSQLI_STORE_RESULT);
         $result2=mysqli_fetch_array($set2,MYSQLI_ASSOC);

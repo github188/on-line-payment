@@ -55,7 +55,7 @@ if (mysqli_errno($conn)) {
         } else {
             echo "激活成功！将在3秒后跳转至登录页面";
             sleep(3);
-            header("Location:login.php");
+            header("Location:login.html");
         }
     }
 }

@@ -21,7 +21,6 @@ if ($_SESSION['login'] === true) {
     $result = mysqli_query($conn, $sql);
     if ($result) {
         $arr = mysqli_fetch_array($result);
-        echo $arr;
         if ($arr) {
             echo json_encode($arr);
         }

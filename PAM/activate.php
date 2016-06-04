@@ -25,21 +25,21 @@ if ($userType=='buyer')
     $id = 'b_id';
 }else {
     $tableName = 'seller';
-    $id = 'u_id';
+    $id = 's_id';
 }
 
 $result = mysqli_query($conn,'SELECT * FROM '.$tableName.' WHERE '.$id.' = '.$uid);
 $result_arr = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
-$activation = $result_arr['activation'];
+$activation = $result_arr['actived'];
 
-if ($activation == '已认证')
+if ($activation == 1)
 {
     echo "该账号已被激活！";
 }
 else
 {
-    $result = mysqli_query($conn,'UPDATE '.$tableName.' SET activation=已认证 WHERE '.$id.' = '.$uid);
+    $result = mysqli_query($conn,'UPDATE '.$tableName.' SET actived=1 WHERE '.$id.' = '.$uid);
     if (mysqli_errno()) {
         print_r(mysqli_error());
     }else{

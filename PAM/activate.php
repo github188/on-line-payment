@@ -35,9 +35,9 @@ if ($userType=='buyer')
 $result = mysqli_query($conn,'SELECT * FROM '.$tableName.' WHERE '.$id.' = '.$uid);
 $result_arr = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
-if (mysqli_errno()) {
+if (mysqli_errno($conn)) {
 
-    print_r(mysqli_error());
+    print_r(mysqli_error($conn));
     exit("激活失败！");
 
 } else{
@@ -50,8 +50,8 @@ if (mysqli_errno()) {
     }
     else {
         $result = mysqli_query($conn, 'UPDATE ' . $tableName . ' SET actived=1 WHERE ' . $id . ' = ' . $uid);
-        if (mysqli_errno()) {
-            print_r(mysqli_error());
+        if (mysqli_errno($conn)) {
+            print_r(mysqli_error($conn));
         } else {
             echo "激活成功！将在3秒后跳转至登录页面";
             sleep(3);

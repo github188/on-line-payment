@@ -29,12 +29,12 @@ if ($_SESSION['login'] === true) {
 
         }
     } elseif ($_POST['action'] === 'edit') {
-        $username = mysqli_escape_string($conn, $_POST['username']);
-        $sex = mysqli_escape_string($conn, $_POST['sex']);
-        $birthday = mysqli_escape_string($conn, $_POST['birthday']);
-        $telephone = mysqli_escape_string($conn, $_POST['telephone']);
-        $real_name = isset($_POST['realName']) ? $_POST['realName'] : null;
-        $IDnum = isset($_POST['IDcardNum']) ? $_POST['IDcardNum'] : null;
+        $username = mysqli_escape_string($conn, $_POST['mod_username']);
+        $sex = mysqli_escape_string($conn, $_POST['mod_sex']);
+        $birthday = mysqli_escape_string($conn, $_POST['mod_birthday']);
+        $telephone = mysqli_escape_string($conn, $_POST['mod_telephone']);
+        $real_name = isset($_POST['realName']) ? $_POST['mod_realName'] : null;
+        $IDnum = isset($_POST['mod_IDcardNum']) ? $_POST['mod_IDcardNum'] : null;
         if ($real_name !== null && $IDnum !== null && !get_verify_status()) {
             //身份验证未通过时更新真实姓名和身份证号码
             $IDnum = intval($IDnum);

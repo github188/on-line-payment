@@ -31,10 +31,10 @@ if(!empty($email) && !empty($userType) && !empty($password) && !empty($money))
             $set2=mysqli_query($conn,$update1,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {
-                echo "success";
+                echo "deposit success";
             }
             else{
-                echo "fail";
+                echo "deposit fail";
             }
         }
     }
@@ -48,10 +48,10 @@ if(!empty($email) && !empty($userType) && !empty($password) && !empty($money))
             $set2=mysqli_query($conn,$update2,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {
-                echo "success";
+                echo "deposit success";
             }
             else{
-                echo "fail";
+                echo "deposit fail";
             }
         }
     }

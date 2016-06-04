@@ -229,9 +229,12 @@
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {
                         if (request.status === 200) {
-                            if (request.responseText == "notexist")
+                            alert(request.responseText);
+                            if (request.responseText === "notexist")
                                 document.getElementById("searchResult").innerHTML = "invalid email or password";
-                            else window.location.href = "gerenjiemian.html";
+                            else if(request.responseText === "success") {
+                                window.location.href = "gerenjiemian.html";
+                            }
                         }
                         else {
                             alert("发生错误：" + request.status);

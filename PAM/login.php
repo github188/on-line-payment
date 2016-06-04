@@ -16,9 +16,8 @@ $conn = db_connect();
 if( !empty($email) && !empty($password) && !empty($userType) ) {
     $email = mysqli_escape_string($conn, $email);
     $password = mysqli_escape_string($conn, $password);
-    $password = md5($password);
+//    $password = md5($password);
     $userType = mysqli_escape_string($conn, $userType);
-    print $email;
     if( $userType === "seller") {
         $sql = 'select * from seller WHERE email = "' . $email . '"' . 'and password="' . $password . '"';
     }
@@ -38,9 +37,8 @@ if( !empty($email) && !empty($password) && !empty($userType) ) {
         } elseif($userType === "buyer") {
             $_SESSION['uid'] = $row['b_id'];
         }
-        echo "$sql" . "</br>" . "login success";
+        echo "success";
     } else {
         echo "notexist";
-//        header("Location: register.html");
     }
 }

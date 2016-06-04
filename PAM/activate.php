@@ -6,7 +6,7 @@
  * Time: 上午12:41
  */
 
-
+header("Content-Type: text/plain;charset=utf-8");
 require_once('common/db.php');
 session_start();
 //连接服务器

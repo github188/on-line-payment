@@ -15,10 +15,50 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
     <style>
+<<<<<<< Updated upstream
         body {
             padding-top: 50px;
             padding-bottom: 40px;
         }
+=======
+      #headline-container
+      {
+        height: 50px;
+      }
+      #headline-container h1
+      {
+        color: #27AE60;
+        position:absolute;
+        left: 20%;
+      }
+      #headline-container h1 span
+      {
+        color: green;
+        font-size: 20px;
+      }
+      #content-container
+      {
+        background-color: #27AE60;
+        color: #fff;
+        border-radius: 25px;
+        border:2px solid #a1a1a1;
+      }
+      .button
+      {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: limegreen;
+        border: none;
+        color: #FFF;
+        text-align: center;
+        font-size: 15px;
+        padding: 5px;
+        width: 100px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+      }
+>>>>>>> Stashed changes
 
         #headline-container {
             height: 50px;
@@ -35,6 +75,7 @@
             font-size: 20px;
         }
 
+<<<<<<< Updated upstream
         #content-container {
             background-color: #27AE60;
             color: #fff;
@@ -167,6 +208,121 @@
                     <div class="col-sm-6">
                         <input type="text" class="form-control" id="email" placeholder="请输入邮箱" name="email">
                     </div>
+=======
+      .button:hover span:after
+      {
+        opacity: 1;
+        right: 0;
+      }
+      a:link,a:visited
+      {
+        border-radius: 4px;
+        font-weight:bold;
+        color:#FFF;
+        background-color:limegreen;
+        width:200px;
+        text-align:center;
+        padding:6px;
+        text-decoration:none;
+        font-size: 15px;
+      }
+      a:hover,a:active
+      {
+        background-color:lime;
+      }
+      .left
+      {
+        position:relative;;
+        left: 30%;
+      }
+      .right
+      {
+        position:relative;;
+        left: 70%;
+      }
+      
+      #register
+      {
+        display: inline-block;
+        border-radius: 4px;
+        background-color: limegreen;
+        border: none;
+        color: #FFF;
+        text-align: center;
+        font-size: 15px;
+        padding: 5px;
+        width: 100px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+      }
+    </style>
+    <script>
+
+  </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row" id="headline-container">
+    	   <h1 class="col-md-12">
+    		    <span><img src="images/yuantuwang.jpg" width="70" height="70" alt="some_text">&nbsp;&nbsp;</span><em><strong>远途网<span>&nbsp;&nbsp;&nbsp;&nbsp;您的出行管家</span></strong></em>
+         </h1>
+      </div>
+    </div>
+
+    <hr size=1 style="height:3px;background-color: green">
+    <!--<div class="container" id="content-container">
+      <div class="row" style="padding-top: 15px">
+    	  <div class="col-md-5">
+    		  <h3 class="left">
+    			  <em><strong><span>机票</span></strong></em><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="glyphicon glyphicon-plane" aria-hidden="true"></span>
+    		  </h3>
+          <hr class="text-center" />
+    		  <h3 class="right">
+    			  <em><strong><span>酒店</span></strong></em><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+    		  </h3>
+    		  </h3>
+          <hr class="text-center" />
+          <h3 class="left">
+            <em><strong><span>一键预定</span></strong></em><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span>
+    		  </h3>
+          </h3>
+          <hr class="text-center" />
+          <h3 class="right">
+            <em><strong><span>快捷支付</span></strong></em><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="glyphicon glyphicon-flash" aria-hidden="true"></span>
+    		  </h3>
+          </h3>
+    	  </div>
+    	  <div class="col-md-7">
+    		  <form class="form-horizontal" role="form" style="padding-top: 20px" method="post" action="login.php">
+    			  <div class="form-group">
+    				  <label class="col-sm-2 control-label" for="inputusername">用户名</label>
+    				  <div class="col-sm-6">
+                <input type="text" class="form-control" id="inputusername" placeholder="请输入邮箱" name="email">
+    			    </div>
+    	      </div>
+    	      <div class="form-group">
+    		      <label class="col-sm-2 control-label" for="inputpassword">密码</label>
+    			    <div class="col-sm-6">
+                <input type="text" class="form-control" id="inputpassword" placeholder="请输入密码" name="password">
+    			    </div>
+    	      </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="radio-inline">
+                      <label>
+                        <input type="radio" name="userType" id="optionsRadios1"
+                          value="buyer" checked> 买家
+                      </label>
+                  </div>
+                  <div class="radio-inline">
+                    <label>
+                      <input type="radio" name="userType" id="optionsRadios2"
+                      value="seller"> 卖家
+                    </label>
+                  </div>
+>>>>>>> Stashed changes
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label" for="password">密码</label>
@@ -213,6 +369,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< Updated upstream
         </div>
         <script>
             document.getElementById("search").onclick = function () {
@@ -242,3 +399,12 @@
         </script>
 </body>
 </html>
+=======
+    		  </form>
+    	  </div>
+      </div>
+    </div>
+
+  </body>
+</html>-->
+>>>>>>> Stashed changes

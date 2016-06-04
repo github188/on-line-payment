@@ -1,5 +1,12 @@
+<!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户激活中……</title>
+</head>
+
 <body>
+
 
 <?php
 /**
@@ -39,9 +46,8 @@ $result = mysqli_query($conn,'SELECT * FROM '.$tableName.' WHERE '.$id.' = '.$ui
 $result_arr = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
 if (mysqli_errno($conn)) {
-    echo "<script language=‘JavaScript’>alert('激活失败！'";
-    print_r(mysqli_error($conn));
-    echo ") </script>";
+    echo "<script language=‘JavaScript’>alert('激活失败！') </script>";
+    //print_r(mysqli_error($conn));
     exit();
 
 } else{

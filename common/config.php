@@ -5,4 +5,5 @@ $DB_USER = "payment";
 $DB_PASSWORD = "payment123";
 $DB_SCHEMA = "payment";
 
+$salt = "PHPISTHEBESTLANG";
 ?>

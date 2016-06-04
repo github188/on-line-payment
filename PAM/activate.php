@@ -28,7 +28,7 @@ if ($userType=='buyer')
         $tableName = 'seller';
         $id = 's_id';
     }else{
-        exit("激活失败！");
+        echo "<script> alert('激活失败！') </script>";
     }
 }
 
@@ -36,9 +36,10 @@ $result = mysqli_query($conn,'SELECT * FROM '.$tableName.' WHERE '.$id.' = '.$ui
 $result_arr = mysqli_fetch_array($result,MYSQLI_ASSOC);
 
 if (mysqli_errno($conn)) {
-
+    echo "<script>alert('激活失败！'";
     print_r(mysqli_error($conn));
-    exit("激活失败！");
+    echo ") </script>";
+    exit();
 
 } else{
 
@@ -46,15 +47,14 @@ if (mysqli_errno($conn)) {
 
     if ($activation == 1)
     {
-        echo "该账号已被激活！";
+        echo "<script> alert('该账号已被激活！') </script>";
     }
     else {
         $result = mysqli_query($conn, 'UPDATE ' . $tableName . ' SET actived=1 WHERE ' . $id . ' = ' . $uid);
         if (mysqli_errno($conn)) {
             print_r(mysqli_error($conn));
         } else {
-            echo "激活成功！将在3秒后跳转至登录页面";
-            sleep(3);
+            echo "<script>alert('激活成功！将在3秒后跳转至登录页面')</script>";
             header("Location:login.html");
         }
     }

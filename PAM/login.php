@@ -37,7 +37,7 @@ if( !empty($email) && !empty($password) && !empty($userType) ) {
         } elseif($userType === "buyer") {
             $_SESSION['uid'] = $row['b_id'];
         }
-        echo "success";
+        echo "exist";
     } else {
         echo "notexist";
     }

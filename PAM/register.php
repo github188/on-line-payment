@@ -10,43 +10,7 @@ require_once('common/db.php');
 require_once "../common/email.class.php";
 session_start();
 
-function encrypt($string,$operation,$key=''){  //加密解密函数 D表示加密 E表示解密
-    $key=md5($key);
-    $key_length=strlen($key);
-    $string=$operation=='D'?base64_decode($string):substr(md5($string.$key),0,8).$string;
-    $string_length=strlen($string);
-    $rndkey=$box=array();
-    $result='';
-    for($i=0;$i<=255;$i++){
-        $rndkey[$i]=ord($key[$i%$key_length]);
-        $box[$i]=$i;
-    }
-    for($j=$i=0;$i<256;$i++){
-        $j=($j+$box[$i]+$rndkey[$i])%256;
-        $tmp=$box[$i];
-        $box[$i]=$box[$j];
-        $box[$j]=$tmp;
-    }
-    for($a=$j=$i=0;$i<$string_length;$i++){
-        $a=($a+1)%256;
-        $j=($j+$box[$a])%256;
-        $tmp=$box[$a];
-        $box[$a]=$box[$j];
-        $box[$j]=$tmp;
-        $result.=chr(ord($string[$i])^($box[($box[$a]+$box[$j])%256]));
-    }
-    if($operation=='D'){
-        if(substr($result,0,8)==substr(md5(substr($result,8).$key),0,8)){
-            return substr($result,8);
-        }else{
-            return'';
-        }
-    }else{
-        return str_replace(base64_encode($result));
-    }
-}
-
-$key ='SoftwareEngineering';   //秘钥
+$key =rand(10,500);   //秘钥
 
 $realName =$_POST['name'];
 $userType = $_POST['userType'];
@@ -78,7 +42,7 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
         }
         else
         {
-            $insert1 ="insert into buyer values(null,'$email','$password',0,NULL ,'$email','$realName','$ID','待认证',null,null)";
+            $insert1 ="insert into buyer values(null,'$email','$password',0,NULL ,'$email','$realName','$ID','待认证',null,null,0)";
             $set2=mysqli_query($conn,$insert1,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {
@@ -107,7 +71,7 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
         }
         else
         {
-            $insert2 ="insert into seller values(null,'$email','$password',0,'$userType',NULL ,null,'$email','$realName','$ID','待认证',null,null)";
+            $insert2 ="insert into seller values(null,'$email','$password',0,'$userType',NULL ,null,'$email','$realName','$ID','待认证',null,null,0)";
             $set2=mysqli_query($conn,$insert2,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {
@@ -137,9 +101,9 @@ if($ifsuccess==1){
     $smtppass = "qqq1051814353";//密码，或者授权码
     $mailtitle = "this is test mail";//邮件主题
 //    $mailcontent = "hello";//邮件内容
-//    $token=encrypt($email, 'E', $key);
-    $token =1;
-    $mailcontent = "activate.php?Token=$token&userType=$userType";//邮件内容
+    $token = $uid ^ $key ;
+    $key_m = $key ^ 1372;
+    $mailcontent = "activate.php?Token=$token&userType=$userType&test=$key_m";//邮件内容
     $mailtype = "HTML";//邮件格式（HTML/TXT）,TXT为文本邮件
     $smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass);//这里面的一个true是表示使用身份验证,否则不使用身份验证.
     $smtp->debug = false;//是否显示发送的调试信息，默认不发送

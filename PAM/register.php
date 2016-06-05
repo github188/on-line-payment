@@ -42,7 +42,7 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
         }
         else
         {
-            $insert1 ="insert into buyer values(null,'$email','$password',0,NULL ,'$email','$realName','$ID','待认证',null,null,0)";
+            $insert1 ="insert into buyer values(null,'$email','$password',0,NULL ,'$email','$realName','$ID','待认证',null,null,0,null,null,null)";
             $set2=mysqli_query($conn,$insert1,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {
@@ -71,7 +71,7 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
         }
         else
         {
-            $insert2 ="insert into seller values(null,'$email','$password',0,'$userType',NULL ,null,'$email','$realName','$ID','待认证',null,null,0)";
+            $insert2 ="insert into seller values(null,'$email','$password',0,'$userType',NULL ,null,'$email','$realName','$ID','待认证',null,null,0,null,null,null)";
             $set2=mysqli_query($conn,$insert2,MYSQLI_STORE_RESULT);//执行sql语句
             if($set2)
             {

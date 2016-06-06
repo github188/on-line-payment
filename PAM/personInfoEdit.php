@@ -11,55 +11,53 @@ session_start();
 
 if ($_SESSION['login'] === true) {
     $conn = db_connect();
-    if ($_POST['action'] === 'show') {
-        if ($_SESSION['userType'] === 'seller') {
-            $sql = 'select username, sex, birthday, telephone, real_name, IDcardNum, status
-                from seller WHERE s_id=' . $_SESSION['uid'];
-        } else if ($_SESSION['userType'] === 'buyer') {
-            $sql = 'select username, sex, birthday, telephone, real_name, IDcardNum, status 
-                from buyer where b_id=' . $_SESSION['uid'];
+    $username = mysqli_escape_string($conn, $_POST['mod_username']);
+    $sex = mysqli_escape_string($conn, $_POST['mod_sex']);
+    $birthday = mysqli_escape_string($conn, $_POST['mod_birthday']);
+    $telephone = mysqli_escape_string($conn, $_POST['mod_telephone']);
+    $real_name = isset($_POST['realName']) ? $_POST['mod_realName'] : null;
+    $IDnum = isset($_POST['mod_IDcardNum']) ? $_POST['mod_IDcardNum'] : null;
+    if ($real_name !== null && $IDnum !== null && !get_verify_status()) {
+        //身份验证未通过时更新真实姓名和身份证号码
+        $IDnum = intval($IDnum);
+        $real_name = mysqli_escape_string($conn, $real_name);
+
+        if ($_SESSION['userType'] === 'buyer') {
+            $sql = "update buyer set username=$username, sex=$sex, birthday=$birthday, telephone=$telephone, real_name=$real_name, IDcardNum=$IDnum";
+        } elseif ($_SESSION['userType'] === 'seller') {
+            $sql = "update seller set username=$username, sex=$sex, birthday=$birthday, telephone=$telephone, real_name=$real_name, IDcardNum=$IDnum";
         }
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
-            $arr = mysqli_fetch_array($result);
-            echo $arr;
-            if ($arr) {
-                echo json_encode($arr);
-            }
+    } else {
+        //身份验证通过时不更新真实姓名和身份证号码
 
-        }
-    } elseif ($_POST['action'] === 'edit') {
-        $username = mysqli_escape_string($conn, $_POST['mod_username']);
-        $sex = mysqli_escape_string($conn, $_POST['mod_sex']);
-        $birthday = mysqli_escape_string($conn, $_POST['mod_birthday']);
-        $telephone = mysqli_escape_string($conn, $_POST['mod_telephone']);
-        $real_name = isset($_POST['realName']) ? $_POST['mod_realName'] : null;
-        $IDnum = isset($_POST['mod_IDcardNum']) ? $_POST['mod_IDcardNum'] : null;
-        if ($real_name !== null && $IDnum !== null && !get_verify_status()) {
-            //身份验证未通过时更新真实姓名和身份证号码
-            $IDnum = intval($IDnum);
-            $real_name = mysqli_escape_string($conn, $real_name);
-
-            if ($_SESSION['userType'] === 'buyer') {
-                $sql = "update buyer set username=$username, sex=$sex, birthday=$birthday, telephone=$telephone, real_name=$real_name, IDcardNum=$IDnum";
-            } elseif ($_SESSION['userType'] === 'seller') {
-                $sql = "update seller set username=$username, sex=$sex, birthday=$birthday, telephone=$telephone, real_name=$real_name, IDcardNum=$IDnum";
-            }
-        } else {
-            //身份验证通过时不更新真实姓名和身份证号码
-
-            if ($_SESSION['userType'] === 'buyer') {
-                $sql = "update buyer set username=$username, sex=$sex, birthday=$birthday, telephone=$telephone";
-            } elseif ($_SESSION['userType'] === 'seller') {
-                $sql = "update seller set username=$username, sex=$sex, birthday=$birthday, telephone=$telephone";
-            }
-        }
-
-        $result = mysqli_query($conn, $sql);
-        if ($result) {
-            echo 'update success';
-        } else {
-            echo 'update fail';
+        $user_id = $_SESSION['uid'];
+        if ($_SESSION['userType'] === 'buyer') {
+            $sql = "update buyer set username='$username', sex='$sex', birthday='$birthday', telephone='$telephone' WHERE b_id=$user_id";
+        } elseif ($_SESSION['userType'] === 'seller') {
+            $sql = "update seller set username='$username', sex='$sex', birthday='$birthday', telephone='$telephone' WHERE s_id=$user_id";
         }
     }
+//    echo $sql;
+
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        echo 'update success';
+    } else {
+        echo 'update fail';
+    }
+}
+
+function get_verify_status($conn, $userType) {
+    $user_id = $_SESSION['uid'];
+    if($userType === "seller") {
+        $sql = "select status from seller WHERE s_id=$user_id";
+    } elseif ( $userType === "buyer" ) {
+        $sql = "select status from buyer WHERE b_id=$user_id";
+    }
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_row($result);
+    if($row['status'] === "认证成功" || $row['status'] === "待认证") {
+        return true;
+    }
+    return false;
 }

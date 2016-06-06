@@ -316,6 +316,15 @@ require_once("../common/verifyLogin.php");
                         if (request.status === 200) {
                             var obj = JSON.parse(request.responseText);
                             var ordernumber = obj.length;
+                            for (var i = 1; i <= 5; i++) {
+                                document.getElementById("sellername" + i).innerHTML = "";
+                                document.getElementById("goodsname" + i).innerHTML = "";
+                                document.getElementById("price" + i).innerHTML = "";
+                                document.getElementById("num" + i).innerHTML = "";
+                                document.getElementById("total" + i).innerHTML = "";
+                                document.getElementById("begtime" + i).innerHTML = "";
+                                document.getElementById("endtime" + i).innerHTML = "";
+                            }
                             if (obj.length == 0) {
                                 return false;
                             }
@@ -356,6 +365,15 @@ require_once("../common/verifyLogin.php");
                         if (request.status === 200) {
                             var obj = JSON.parse(request.responseText);
                             var ordernumber = obj.length;
+                            for (var i = 1; i <= 5; i++) {
+                                document.getElementById("sellername" + i).innerHTML = "";
+                                document.getElementById("goodsname" + i).innerHTML = "";
+                                document.getElementById("price" + i).innerHTML = "";
+                                document.getElementById("num" + i).innerHTML = "";
+                                document.getElementById("total" + i).innerHTML = "";
+                                document.getElementById("begtime" + i).innerHTML = "";
+                                document.getElementById("endtime" + i).innerHTML = "";
+                            }
                             if (obj.length == 0) {
                                 return false;
                             }
@@ -398,6 +416,15 @@ require_once("../common/verifyLogin.php");
                                 return false;
                             page--;
                             var obj = JSON.parse(request.responseText);
+                            for (var i = 1; i <= 5; i++) {
+                                document.getElementById("sellername" + i).innerHTML = "";
+                                document.getElementById("goodsname" + i).innerHTML = "";
+                                document.getElementById("price" + i).innerHTML = "";
+                                document.getElementById("num" + i).innerHTML = "";
+                                document.getElementById("total" + i).innerHTML = "";
+                                document.getElementById("begtime" + i).innerHTML = "";
+                                document.getElementById("endtime" + i).innerHTML = "";
+                            }
                             if (obj.length == 0) {
                                 return false;
                             }
@@ -437,6 +464,15 @@ require_once("../common/verifyLogin.php");
                     if (request.readyState === 4) {
                         if (request.status === 200) {
                             var obj = JSON.parse(request.responseText);
+                            for (var i = 1; i <= 5; i++) {
+                                document.getElementById("sellername" + i).innerHTML = "";
+                                document.getElementById("goodsname" + i).innerHTML = "";
+                                document.getElementById("price" + i).innerHTML = "";
+                                document.getElementById("num" + i).innerHTML = "";
+                                document.getElementById("total" + i).innerHTML = "";
+                                document.getElementById("begtime" + i).innerHTML = "";
+                                document.getElementById("endtime" + i).innerHTML = "";
+                            }
                             if (obj.length == 0) {
                                 return false;
                             }
@@ -448,15 +484,6 @@ require_once("../common/verifyLogin.php");
                                 number = 5;
                             else
                                 number = (obj.length - (page - 1) * 5) % 5;
-                            for (var i = 1; i <= 5; i++) {
-                                document.getElementById("sellername" + i).innerHTML = "";
-                                document.getElementById("goodsname" + i).innerHTML = "";
-                                document.getElementById("price" + i).innerHTML = "";
-                                document.getElementById("num" + i).innerHTML = "";
-                                document.getElementById("total" + i).innerHTML = "";
-                                document.getElementById("begtime" + i).innerHTML = "";
-                                document.getElementById("endtime" + i).innerHTML = "";
-                            }
                             for (var i = 1; i <= number; i++) {
                                 document.getElementById("sellername" + i).innerHTML = obj[i - 1 + 5 * (page - 1)].sellername;
                                 document.getElementById("goodsname" + i).innerHTML = obj[i - 1 + 5 * (page - 1)].goodsname;

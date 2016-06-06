@@ -169,7 +169,7 @@ require_once("../common/verifyLogin.php");
                 $("#chaxunxiaofeijilu").hide();
                 $("#chaxunzhanghuyue").show();
                 var request = new XMLHttpRequest();
-                request.open("GET", "yue.php");
+                request.open("GET", "getBalance.php");
                 request.send();
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {
@@ -274,8 +274,8 @@ require_once("../common/verifyLogin.php");
                 if(isNaN(document.getElementById("money").value)）
                   return false;
                 var request = new XMLHttpRequest();
-                request.open("POST", "personInfoQuery.php");
-                var data = "chongzhipassword=" + document.getElementById("chongzhipassword").value
+                request.open("POST", "deposit.php");
+                var data = "chongzhipassword=" + hex_md5(document.getElementById("chongzhipassword").value)
                         + "&money=" + document.getElementById("money").value;
                 request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 request.send(data);
@@ -309,7 +309,7 @@ require_once("../common/verifyLogin.php");
                     if (month.options[i].selected)
                         checkMonth = month.options[i].value;
                 }
-                request.open("GET", "chaxun.php?checkYear=" + checkYear + "&checkMonth=" + checkMonth);
+                request.open("GET", "dealInfoQuery.php?checkYear=" + checkYear + "&checkMonth=" + checkMonth);
                 request.send();
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {

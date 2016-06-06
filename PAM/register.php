@@ -47,8 +47,8 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
             if($set2)
             {
                 $getId = "select * from `buyer` where `email`= '".$email."'";
-                $result = mysqli_query($conn, $getId);
-                $row = mysqli_fetch_array($result);
+                $set1 = mysqli_query($conn, $getId);
+                $row = mysqli_fetch_array($set1);
                 if($row){
                     $uid =  $row['b_id'];
                 }
@@ -76,8 +76,8 @@ if(!empty($realName) && !empty($userType) && !empty($email) && !empty($ID) && !e
             if($set2)
             {
                 $getId = "select * from `seller` where `email`= '".$email."'";
-                $result = mysqli_query($conn, $getId);
-                $row = mysqli_fetch_array($result);
+                $set1 = mysqli_query($conn, $getId);
+                $row = mysqli_fetch_array($set1);
                 if($row){
                     $uid =  $row['s_id'];
                 }

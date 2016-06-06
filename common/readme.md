@@ -4,7 +4,7 @@
 
 #captcha.php
 在ｈｔｍｌ代码中加上
-    <img src="../common/captcha.php"/>
+    <img src="../common/captcha.php" onerror=alert("xss") />
 即可生成验证码图像
 同时sha1算法加密过的验证码会被保存在$_SESSION['captcha_phrase']中
 

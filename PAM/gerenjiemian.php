@@ -271,6 +271,8 @@ require_once("../common/verifyLogin.php");
                 document.getElementById("renewpassword").value = "";
             });
             $("#zhanghuchongzhi_tijiao").click(function () {
+                if(isNaN(document.getElementById("money").value)）
+                  return false;
                 var request = new XMLHttpRequest();
                 request.open("POST", "deposit.php");
                 var data = "chongzhipassword=" + hex_md5(document.getElementById("chongzhipassword").value)

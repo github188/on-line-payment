@@ -11,8 +11,6 @@ $email =$_SESSION['email'];
 $userType = $_SESSION['userType'];
 $password = $_POST['chongzhipassword'];
 $money = $_POST['money'];
-echo $password;
-echo $money;
 $conn = db_connect();
 if(!empty($email) && !empty($userType) && !empty($password) && !empty($money))
 {

@@ -13,7 +13,7 @@ if($_SESSION['login'] === true){
     $userType = $_SESSION['userType'];
 //    $email = '554211620@qq.com';
 //    $userType = 'buyer';
-    echo $email.$userType;
+//    echo $email.$userType;
     $conn = db_connect();
     if($userType === 'buyer'){
         $check1 ="select * from `buyer` where `email`= '".$email."'";

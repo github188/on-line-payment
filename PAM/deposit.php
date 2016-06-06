@@ -31,9 +31,10 @@ if(!empty($email) && !empty($userType) && !empty($password) && !empty($money))
             {
                 echo "deposit success";
             }
-            else{
-                echo "deposit fail";
-            }
+
+        }
+        else{
+            echo "deposit fail";
         }
     }
     else if($userType === 'seller') {
@@ -48,9 +49,10 @@ if(!empty($email) && !empty($userType) && !empty($password) && !empty($money))
             {
                 echo "deposit success";
             }
-            else{
-                echo "deposit fail";
-            }
+
+        }
+        else{
+            echo "deposit fail";
         }
     }
 

@@ -59,6 +59,6 @@ if($set1->num_rows>0){
 }
 
 else {
-    echo"no";
+    echo "";
 }
 ?>

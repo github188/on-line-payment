@@ -271,8 +271,12 @@ require_once("../common/verifyLogin.php");
                 document.getElementById("renewpassword").value = "";
             });
             $("#zhanghuchongzhi_tijiao").click(function () {
-                if(isNaN(document.getElementById("money").value)）
-                  return false;
+                var money_charge= document.getElementById("money").value;
+                var re = /^\d+$/;
+                if( !re.test(money_charge) ) {
+                    alert("金额只能输入数字,且为正整数");
+                    return false;
+                }
                 var request = new XMLHttpRequest();
                 request.open("POST", "deposit.php");
                 var data = "chongzhipassword=" + hex_md5(document.getElementById("chongzhipassword").value)
@@ -296,6 +300,58 @@ require_once("../common/verifyLogin.php");
                 document.getElementById("money").value = "";
             });
             $("#chaxun").click(function () {
+                var request = new XMLHttpRequest();
+                var year = document.getElementById("year")
+                var month = document.getElementById("month");
+                var checkYear;
+                var checkMonth;
+                for (var i = 0; i < year.length; i++) {
+                    if (year.options[i].selected)
+                        checkYear = year.options[i].value;
+                }
+                for (var i = 0; i < month.length; i++) {
+                    if (month.options[i].selected)
+                        checkMonth = month.options[i].value;
+                }
+                request.open("GET", "dealInfoQuery.php?checkYear=" + checkYear + "&checkMonth=" + checkMonth);
+                request.send();
+                request.onreadystatechange = function () {
+                    if (request.readyState === 4) {
+                        if (request.status === 200) {
+                            for (var i = 1; i <= 5; i++) {
+                                document.getElementById("sellername" + i).innerHTML = "";
+                                document.getElementById("goodsname" + i).innerHTML = "";
+                                document.getElementById("price" + i).innerHTML = "";
+                                document.getElementById("num" + i).innerHTML = "";
+                                document.getElementById("total" + i).innerHTML = "";
+                                document.getElementById("begtime" + i).innerHTML = "";
+                                document.getElementById("endtime" + i).innerHTML = "";
+                            }
+                            if(request.responseText === "") {
+                                return false;
+                            }
+                            var obj = JSON.parse(request.responseText);
+                            var ordernumber = obj.length;
+                            if (obj.length == 0) {
+                                return false;
+                            }
+                            for (var i = 1; i <= ordernumber; i++) {
+                                document.getElementById("sellername" + i).innerHTML = obj[i - 1].sellername;
+                                document.getElementById("goodsname" + i).innerHTML = obj[i - 1].goodsname;
+                                document.getElementById("price" + i).innerHTML = obj[i - 1].price;
+                                document.getElementById("num" + i).innerHTML = obj[i - 1].num;
+                                document.getElementById("total" + i).innerHTML = obj[i - 1].total;
+                                document.getElementById("begtime" + i).innerHTML = obj[i - 1].begtime;
+                                document.getElementById("endtime" + i).innerHTML = obj[i - 1].endtime;
+                            }
+                        }
+                        else {
+                            alert("发生错误：" + request.status);
+                        }
+                    }
+                }
+            });
+            $("#firstpage").click(function () {
                 var request = new XMLHttpRequest();
                 var year = document.getElementById("year")
                 var month = document.getElementById("month");
@@ -344,55 +400,6 @@ require_once("../common/verifyLogin.php");
                     }
                 }
             });
-            $("#firstpage").click(function () {
-                var request = new XMLHttpRequest();
-                var year = document.getElementById("year")
-                var month = document.getElementById("month");
-                var checkYear;
-                var checkMonth;
-                for (var i = 0; i < year.length; i++) {
-                    if (year.options[i].selected)
-                        checkYear = year.options[i].value;
-                }
-                for (var i = 0; i < month.length; i++) {
-                    if (month.options[i].selected)
-                        checkMonth = month.options[i].value;
-                }
-                request.open("GET", "chaxun.php?checkYear=" + checkYear + "&checkMonth=" + checkMonth);
-                request.send();
-                request.onreadystatechange = function () {
-                    if (request.readyState === 4) {
-                        if (request.status === 200) {
-                            var obj = JSON.parse(request.responseText);
-                            var ordernumber = obj.length;
-                            for (var i = 1; i <= 5; i++) {
-                                document.getElementById("sellername" + i).innerHTML = "";
-                                document.getElementById("goodsname" + i).innerHTML = "";
-                                document.getElementById("price" + i).innerHTML = "";
-                                document.getElementById("num" + i).innerHTML = "";
-                                document.getElementById("total" + i).innerHTML = "";
-                                document.getElementById("begtime" + i).innerHTML = "";
-                                document.getElementById("endtime" + i).innerHTML = "";
-                            }
-                            if (obj.length == 0) {
-                                return false;
-                            }
-                            for (var i = 1; i <= ordernumber; i++) {
-                                document.getElementById("sellername" + i).innerHTML = obj[i - 1].sellername;
-                                document.getElementById("goodsname" + i).innerHTML = obj[i - 1].goodsname;
-                                document.getElementById("price" + i).innerHTML = obj[i - 1].price;
-                                document.getElementById("num" + i).innerHTML = obj[i - 1].num;
-                                document.getElementById("total" + i).innerHTML = obj[i - 1].total;
-                                document.getElementById("begtime" + i).innerHTML = obj[i - 1].begtime;
-                                document.getElementById("endtime" + i).innerHTML = obj[i - 1].endtime;
-                            }
-                        }
-                        else {
-                            alert("发生错误：" + request.status);
-                        }
-                    }
-                }
-            });
             $("#lastpage").click(function () {
                 var request = new XMLHttpRequest();
                 var year = document.getElementById("year")
@@ -407,7 +414,7 @@ require_once("../common/verifyLogin.php");
                     if (month.options[i].selected)
                         checkMonth = month.options[i].value;
                 }
-                request.open("GET", "chaxun.php?checkYear=" + "&checkMonth=");
+                request.open("GET", "dealInfoQuery.php?checkYear=" + "&checkMonth=");
                 request.send();
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {
@@ -458,7 +465,7 @@ require_once("../common/verifyLogin.php");
                     if (month.options[i].selected)
                         checkMonth = month.options[i].value;
                 }
-                request.open("GET", "chaxun.php?checkYear=" + checkYear + "&checkMonth=" + checkMonth);
+                request.open("GET", "dealInfoQuery.php?checkYear=" + checkYear + "&checkMonth=" + checkMonth);
                 request.send();
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {
@@ -868,13 +875,13 @@ require_once("../common/verifyLogin.php");
                                     <option value="2015">2015</option>
                                     <option value="2014">2014</option>
                                     <option value="2013">2013</option>
-                                    <option value="2012">2015</option>
-                                    <option value="2011">2014</option>
-                                    <option value="2010">2013</option>
-                                    <option value="2009">2015</option>
-                                    <option value="2008">2014</option>
-                                    <option value="2007">2013</option>
-                                    <option value="2006">2015</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2008">2008</option>
+                                    <option value="2007">2007</option>
+                                    <option value="2006">2006</option>
                                 </select>
                             </div>
                             <div class="col-md-1">

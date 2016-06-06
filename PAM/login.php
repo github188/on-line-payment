@@ -40,7 +40,7 @@ if (!empty($email) && !empty($password) && !empty($userType)) {
         }
         setcookie("username", $row['username'], time() + 60 * 60 * 24 * 30, '/');
 
-        if ($_GET['rememberme'] === "on") {
+        if ($_GET['rememberme'] === "true") {
             //请记住我
             rememberme($userType, $salt);
         }

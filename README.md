@@ -5,7 +5,6 @@
 * 如果小组之间需要进行代码协商可以在issue栏里面讨论，或移至teambition、QQ
 * 开发IDE一般都集成Github的功能，如果没有可以用命令行或者git gui等图形化管理工具
 * 如无必要，不用fork仓库，再提交pull request。可以直接git clone 到本地，然后直接提交到这个仓库
-* 前端界面编写是否使用模板未定
 
 ##common 文件夹存放了全局配置文件，公用函数、类、模板.目前有发送邮件类，验证码脚本，页面模板等
 
@@ -66,7 +65,7 @@ http://115.159.36.21/payment/Booking/index.php
 * buyer(b_id, username, password, balance, real_name, email, tel, sex, birthday, status)
 * hotel(h_id, s_id, name,  price, information, total)
 * flight(f_id, s_id, name, price, information, from, to, time, total)
-* order(o_id, seller_id, buyer_id, state, type, g_id, price, num, begintime, endtime)
+* order(o_id, seller_id, buyer_id, state, type, g_id, g_name, price, num, begintime, endtime)
 * IDauthReq(u_id, userType, realName, ID, processed) 身份认证处理请求表
 
 

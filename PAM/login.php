@@ -39,12 +39,13 @@ if (!empty($email) && !empty($password) && !empty($userType)) {
             $_SESSION['uid'] = $row['b_id'];
         }
         setcookie("username", $row['username'], time() + 60 * 60 * 24 * 30, '/');
-        echo "exist";
 
-        if ($_GET['rememberme'] === true) {
+        if ($_GET['rememberme'] === "on") {
             //请记住我
             rememberme($userType, $salt);
         }
+
+        echo "exist";
     } else {
         echo "notexist";
     }
@@ -58,20 +59,20 @@ function rememberme($userType)
     $timeout = time() + 60 * 60 * 24 * 7;
     $user_id = $_SESSION['uid'];
     if ($userType === 'seller') {
-        $sql = "update seller set rememberMe_id=$identifier, token=$token, timeout=$timeout 
+        $sql = "update seller set rememberMe_id='$identifier', token='$token', timeout=$timeout 
                 WHERE s_id = $user_id";
     } elseif ($userType === 'buyer') {
-        $sql = "update buyer set rememberMe_id=$identifier, token=$token, timeout=$timeout
+        $sql = "update buyer set rememberMe_id='$identifier', token='$token', timeout=$timeout
                 WHERE b_id = $user_id";
     }
     $conn = db_connect();
     $result = mysqli_query($conn, $sql);
     if($result) {
-        echo "成功插入ｔｏｋｅｎ";
+        $userType = base64_encode($userType);
+        setcookie("auth", "$identifier:$token:$userType", $timeout, "/");
+//        echo "成功插入ｔｏｋｅｎ";
     } else {
-        echo "插入ｔｏｋｅｎ失败";
+//        echo "插入ｔｏｋｅｎ失败";
     }
-    $userType = base64_encode($userType);
-    setcookie("auth", "$identifier:$token:$userType", $timeout);
 
 }

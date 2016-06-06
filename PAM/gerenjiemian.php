@@ -1,3 +1,7 @@
+<?php
+require_once("../common/verifyLogin.php");
+
+?>
 <!DOCTYPE html>
 <html>
 <head>

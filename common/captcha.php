@@ -45,7 +45,7 @@ for($i = 0; $i < RANDOM_DOTNUM; $i++) {
 }
 
 //imagestring($img, 5, 5, 5, $captcha_phrase, $text_color);
-imagettftext($img, 18, 0, 5, CAPTCHA_HEIGHT - 5, $text_color, './LiberationMono-BoldItalic.ttf', $captcha_phrase);
+imagettftext($img, 18, 0, 5, CAPTCHA_HEIGHT - 5, $text_color, './font/LiberationMono-BoldItalic.ttf', $captcha_phrase);
 
 header("Content-type: image/png");
 imagepng($img);

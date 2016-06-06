@@ -16,9 +16,9 @@ function verify_cookie()
     list($identifier, $token, $userType) = explode(':', $_COOKIE['auth']);
     $userType = base64_decode($userType);
     if ($userType === 'seller') {
-        $sql = "select * from seller WHERE rememberMe_id=$identifier";
+        $sql = "select * from seller WHERE rememberMe_id='$identifier'";
     } elseif ($userType === 'buyer') {
-        $sql = "select * from buyer WHERE rememberMe_id=$identifier";
+        $sql = "select * from buyer WHERE rememberMe_id='$identifier'";
     }
     $result = mysqli_query($conn, $sql);
     if($result) {
@@ -26,13 +26,16 @@ function verify_cookie()
 
         if ($token !== $row['token']) {
             //ｃｏｏｋｉｅ认证失败
-            header("Location: ../PAM/login.html");
+            return false;
+//            die("token 不等");
 
         } elseif (time() > $row['timeout']) {
-            header("Location: ../PAM/login.html");
+            return false;
+//            die("ｃｏｏｋｉｅ已过期");
 
-        } elseif (md5($salt . md5($row['email'], $salt)) !== $identifier) {
-            header("Location: ../PAM/login.html");
+        } elseif (md5($salt . md5($row['email'] . $salt)) !== $identifier) {
+            return false;
+//            die("identifier 格式不对");
 
         } elseif ($token === $row['token']) {
             $_SESSION['login'] = true;
@@ -40,8 +43,20 @@ function verify_cookie()
             $_SESSION['uid'] = $userType === 'seller' ? $row['s_id'] : $row['b_id'];
             $_SESSION['userType'] = $userType;
             setcookie("username", $row['username'], time() + 60 * 60 * 24 * 30, '/');
+            return true;
         }
     } else {
         echo "identifier not exist";
+        return false;
     }
+    return false;
+}
+
+session_start();
+if($_SESSION['login'] === true) {
+} else {
+    if(!verify_cookie()) {
+//        die("auth cookie error");
+        header("Location: login.html");
+    } 
 }

@@ -194,7 +194,7 @@
                     <div class="col-sm-offset-2 col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="rememberme"> 请记住我
+                                <input type="checkbox" name="rememberme" id="rememberme"> 请记住我
                             </label>
                         </div>
                     </div>
@@ -224,15 +224,17 @@
                         userTypeID = userType[i].value;
                 }
                 var hash = hex_md5(document.getElementById("password").value);
-                request.open("GET", "login.php?email=" + document.getElementById("email").value + "&password=" + hash + "&userType=" + userTypeID);
+                request.open("GET", "login.php?email=" + document.getElementById("email").value + "&password=" + hash + "&userType=" + userTypeID
+                            + "&rememberme=" + document.getElementById("rememberme").value);
                 request.send();
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {
                         if (request.status === 200) {
+                            alert(request.responseText);
                             if (request.responseText == "notexist")
                                 document.getElementById("searchResult").innerHTML = "invalid email or password";
                             else if (request.responseText == "exist") {
-                                window.location.href = "gerenjiemian.html";
+                                window.location.href = "gerenjiemian.php";
                             }
                         }else {
                             alert("发生错误：" + request.status);

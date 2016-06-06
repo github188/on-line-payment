@@ -38,10 +38,12 @@ else if(!empty($checkYear) && !empty($checkMonth) ){
         $endtime = "$checkYear-$nextMonth-01 00:00:00";
     }
 }
+$buyercheck="select * from `buyer` where `email`= '".$email."'";
+$setbuyer = mysqli_query($conn,$buyercheck,MYSQLI_STORE_RESULT);
+$resultbuyer=mysqli_fetch_array($setbuyer,MYSQLI_ASSOC);
 
-$select1 ="select * from `seller` natural join `order` where `begtime`>= '".$begtime."'and `endtime` <='".$endtime."'";
+$select1 ="select * from `seller` natural join `order` where `begtime`>= '".$begtime."'and `endtime` <='".$endtime."'and `b_id`='".$resultbuyer['b_id']."'";
 $set1 = mysqli_query($conn,$select1,MYSQLI_STORE_RESULT);
-
 if($set1->num_rows>0){
     $i=0;
     while($row =$set1->fetch_array() ){

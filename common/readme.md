@@ -1,12 +1,16 @@
 #verifyLogin.php使用方法
+```
 请在每个需要登陆才能使用的页面的ｐｈｐ脚本内加上
     require_once("../common/verifyLogin.php")
+```
 
 #captcha.php
-在ｈｔｍｌ代码中加上
+```
+在html代码中加上
     <img src="../common/captcha.php" onerror=alert("xss") />
 即可生成验证码图像
 同时sha1算法加密过的验证码会被保存在$_SESSION['captcha_phrase']中
+```
 
 #email.class.php使用方法
 ```

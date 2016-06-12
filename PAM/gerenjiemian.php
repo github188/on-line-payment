@@ -93,6 +93,11 @@ require_once("../common/verifyLogin.php");
     <script>
         var page = 1;
         $(document).ready(function () {
+          $("#tr1").hide();
+          $("#tr2").hide();
+          $("#tr3").hide();
+          $("#tr4").hide();
+          $("#tr5").hide();
             $("#mulu1").click(function () {
                 $("#xiugaigerenxinxi").hide();
                 $("#xiugaimima").hide();
@@ -300,6 +305,12 @@ require_once("../common/verifyLogin.php");
                 document.getElementById("money").value = "";
             });
             $("#chaxun").click(function () {
+              $("#tr1").hide();
+              $("#tr2").hide();
+              $("#tr3").hide();
+              $("#tr4").hide();
+              $("#tr5").hide();
+              page = 1;
                 var request = new XMLHttpRequest();
                 var year = document.getElementById("year")
                 var month = document.getElementById("month");
@@ -316,42 +327,59 @@ require_once("../common/verifyLogin.php");
                 request.open("GET", "dealInfoQuery.php?checkYear=" + checkYear + "&checkMonth=" + checkMonth);
                 request.send();
                 request.onreadystatechange = function () {
-                    if (request.readyState === 4) {
+                  if (request.readyState === 4) {
                         if (request.status === 200) {
-                            for (var i = 1; i <= 5; i++) {
-                                document.getElementById("sellername" + i).innerHTML = "";
-                                document.getElementById("goodsname" + i).innerHTML = "";
-                                document.getElementById("price" + i).innerHTML = "";
-                                document.getElementById("num" + i).innerHTML = "";
-                                document.getElementById("total" + i).innerHTML = "";
-                                document.getElementById("begtime" + i).innerHTML = "";
-                                document.getElementById("endtime" + i).innerHTML = "";
-                            }
-                            if(request.responseText === "") {
-                                return false;
-                            }
-                            var obj = JSON.parse(request.responseText);
-                            var ordernumber = obj.length;
-                            if (obj.length == 0) {
-                                return false;
-                            }
-                            for (var i = 1; i <= ordernumber; i++) {
-                                document.getElementById("sellername" + i).innerHTML = obj[i - 1].sellername;
-                                document.getElementById("goodsname" + i).innerHTML = obj[i - 1].goodsname;
-                                document.getElementById("price" + i).innerHTML = obj[i - 1].price;
-                                document.getElementById("num" + i).innerHTML = obj[i - 1].num;
-                                document.getElementById("total" + i).innerHTML = obj[i - 1].total;
-                                document.getElementById("begtime" + i).innerHTML = obj[i - 1].begtime;
-                                document.getElementById("endtime" + i).innerHTML = obj[i - 1].endtime;
-                            }
+                          if(request.responseText === "") {
+                            return false;
+                          }
+                        var obj = JSON.parse(request.responseText);
+                        var ordernumber = obj.length;
+                        for (var i = 1; i <= 5; i++) {
+                            document.getElementById("sellername" + i).innerHTML = "";
+                            document.getElementById("goodsname" + i).innerHTML = "";
+                            document.getElementById("price" + i).innerHTML = "";
+                            document.getElementById("num" + i).innerHTML = "";
+                            document.getElementById("total" + i).innerHTML = "";
+                            document.getElementById("begtime" + i).innerHTML = "";
+                            document.getElementById("endtime" + i).innerHTML = "";
                         }
-                        else {
-                            alert("发生错误：" + request.status);
+                        if(ordernumber < 5)
+                        {
+                          for (var i = 1; i <= ordernumber; i++) {
+                            $("#tr" + i).show();
+                          }
                         }
-                    }
+                        else
+                        {
+                          $("#tr1").show();
+                          $("#tr2").show();
+                          $("#tr3").show();
+                          $("#tr4").show();
+                          $("#tr5").show();
+                        }
+                          for (var i = 1; i <= ordernumber; i++) {
+                              document.getElementById("sellername" + i).innerHTML = obj[i - 1].sellername;
+                              document.getElementById("goodsname" + i).innerHTML = obj[i - 1].goodsname;
+                              document.getElementById("price" + i).innerHTML = obj[i - 1].price;
+                              document.getElementById("num" + i).innerHTML = obj[i - 1].num;
+                              document.getElementById("total" + i).innerHTML = obj[i - 1].total;
+                              document.getElementById("begtime" + i).innerHTML = obj[i - 1].begtime;
+                              document.getElementById("endtime" + i).innerHTML = obj[i - 1].endtime;
+                          }
+                      }
+                      else {
+                          alert("发生错误：" + request.status);
+                      }
+                  }
                 }
             });
             $("#firstpage").click(function () {
+              $("#tr1").hide();
+              $("#tr2").hide();
+              $("#tr3").hide();
+              $("#tr4").hide();
+              $("#tr5").hide();
+              page = 1;
                 var request = new XMLHttpRequest();
                 var year = document.getElementById("year")
                 var month = document.getElementById("month");
@@ -368,36 +396,50 @@ require_once("../common/verifyLogin.php");
                 request.open("GET", "dealInfoQuery.php?checkYear=" + checkYear + "&checkMonth=" + checkMonth);
                 request.send();
                 request.onreadystatechange = function () {
-                    if (request.readyState === 4) {
+                  if (request.readyState === 4) {
                         if (request.status === 200) {
-                            var obj = JSON.parse(request.responseText);
-                            var ordernumber = obj.length;
-                            for (var i = 1; i <= 5; i++) {
-                                document.getElementById("sellername" + i).innerHTML = "";
-                                document.getElementById("goodsname" + i).innerHTML = "";
-                                document.getElementById("price" + i).innerHTML = "";
-                                document.getElementById("num" + i).innerHTML = "";
-                                document.getElementById("total" + i).innerHTML = "";
-                                document.getElementById("begtime" + i).innerHTML = "";
-                                document.getElementById("endtime" + i).innerHTML = "";
-                            }
-                            if (obj.length == 0) {
-                                return false;
-                            }
-                            for (var i = 1; i <= ordernumber; i++) {
-                                document.getElementById("sellername" + i).innerHTML = obj[i - 1].sellername;
-                                document.getElementById("goodsname" + i).innerHTML = obj[i - 1].goodsname;
-                                document.getElementById("price" + i).innerHTML = obj[i - 1].price;
-                                document.getElementById("num" + i).innerHTML = obj[i - 1].num;
-                                document.getElementById("total" + i).innerHTML = obj[i - 1].total;
-                                document.getElementById("begtime" + i).innerHTML = obj[i - 1].begtime;
-                                document.getElementById("endtime" + i).innerHTML = obj[i - 1].endtime;
-                            }
+                          if(request.responseText === "") {
+                            return false;
+                          }
+                        var obj = JSON.parse(request.responseText);
+                        var ordernumber = obj.length;
+                        for (var i = 1; i <= 5; i++) {
+                            document.getElementById("sellername" + i).innerHTML = "";
+                            document.getElementById("goodsname" + i).innerHTML = "";
+                            document.getElementById("price" + i).innerHTML = "";
+                            document.getElementById("num" + i).innerHTML = "";
+                            document.getElementById("total" + i).innerHTML = "";
+                            document.getElementById("begtime" + i).innerHTML = "";
+                            document.getElementById("endtime" + i).innerHTML = "";
                         }
-                        else {
-                            alert("发生错误：" + request.status);
+                        if(ordernumber < 5)
+                        {
+                          for (var i = 1; i <= ordernumber; i++) {
+                            $("#tr" + i).show();
+                          }
                         }
-                    }
+                        else
+                        {
+                          $("#tr1").show();
+                          $("#tr2").show();
+                          $("#tr3").show();
+                          $("#tr4").show();
+                          $("#tr5").show();
+                        }
+                          for (var i = 1; i <= ordernumber; i++) {
+                              document.getElementById("sellername" + i).innerHTML = obj[i - 1].sellername;
+                              document.getElementById("goodsname" + i).innerHTML = obj[i - 1].goodsname;
+                              document.getElementById("price" + i).innerHTML = obj[i - 1].price;
+                              document.getElementById("num" + i).innerHTML = obj[i - 1].num;
+                              document.getElementById("total" + i).innerHTML = obj[i - 1].total;
+                              document.getElementById("begtime" + i).innerHTML = obj[i - 1].begtime;
+                              document.getElementById("endtime" + i).innerHTML = obj[i - 1].endtime;
+                          }
+                      }
+                      else {
+                          alert("发生错误：" + request.status);
+                      }
+                  }
                 }
             });
             $("#lastpage").click(function () {
@@ -421,6 +463,11 @@ require_once("../common/verifyLogin.php");
                         if (request.status === 200) {
                             if (page == 1)
                                 return false;
+                            $("#tr1").show();
+                            $("#tr2").show();
+                            $("#tr3").show();
+                            $("#tr4").show();
+                            $("#tr5").show();
                             page--;
                             var obj = JSON.parse(request.responseText);
                             for (var i = 1; i <= 5; i++) {
@@ -471,6 +518,12 @@ require_once("../common/verifyLogin.php");
                     if (request.readyState === 4) {
                         if (request.status === 200) {
                             var obj = JSON.parse(request.responseText);
+                            if (obj.length == 0) {
+                                return false;
+                            }
+                            if (obj.length <= page * 5)
+                                return false;
+
                             for (var i = 1; i <= 5; i++) {
                                 document.getElementById("sellername" + i).innerHTML = "";
                                 document.getElementById("goodsname" + i).innerHTML = "";
@@ -480,17 +533,22 @@ require_once("../common/verifyLogin.php");
                                 document.getElementById("begtime" + i).innerHTML = "";
                                 document.getElementById("endtime" + i).innerHTML = "";
                             }
-                            if (obj.length == 0) {
-                                return false;
-                            }
-                            if (obj.length <= page * 5)
-                                return false;
+                            $("#tr1").hide();
+                            $("#tr2").hide();
+                            $("#tr3").hide();
+                            $("#tr4").hide();
+                            $("#tr5").hide();
                             page++;
                             var number;
                             if ((obj.length - (page - 1) * 5) >= 5)
                                 number = 5;
                             else
                                 number = (obj.length - (page - 1) * 5) % 5;
+
+                            for (var i = 1; i <= number; i++) {
+                              $("#tr" + i).show();
+                            }
+
                             for (var i = 1; i <= number; i++) {
                                 document.getElementById("sellername" + i).innerHTML = obj[i - 1 + 5 * (page - 1)].sellername;
                                 document.getElementById("goodsname" + i).innerHTML = obj[i - 1 + 5 * (page - 1)].goodsname;
@@ -926,7 +984,7 @@ require_once("../common/verifyLogin.php");
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                        <tr id="tr1">
                             <td id="sellername1"></td>
                             <td id="goodsname1"></td>
                             <td id="price1"></td>
@@ -935,7 +993,7 @@ require_once("../common/verifyLogin.php");
                             <td id="begtime1"></td>
                             <td id="endtime1"></td>
                         </tr>
-                        <tr>
+                        <tr id="tr2">
                             <td id="sellername2"></td>
                             <td id="goodsname2"></td>
                             <td id="price2"></td>
@@ -944,7 +1002,7 @@ require_once("../common/verifyLogin.php");
                             <td id="begtime2"></td>
                             <td id="endtime2"></td>
                         </tr>
-                        <tr>
+                        <tr id="tr3">
                             <td id="sellername3"></td>
                             <td id="goodsname3"></td>
                             <td id="price3"></td>
@@ -953,7 +1011,7 @@ require_once("../common/verifyLogin.php");
                             <td id="begtime3"></td>
                             <td id="endtime3"></td>
                         </tr>
-                        <tr>
+                        <tr id="tr4">
                             <td id="sellername4"></td>
                             <td id="goodsname4"></td>
                             <td id="price4"></td>
@@ -962,7 +1020,7 @@ require_once("../common/verifyLogin.php");
                             <td id="begtime4"></td>
                             <td id="endtime4"></td>
                         </tr>
-                        <tr>
+                        <tr id="tr5">
                             <td id="sellername5"></td>
                             <td id="goodsname5"></td>
                             <td id="price5"></td>

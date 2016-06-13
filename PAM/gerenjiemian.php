@@ -456,11 +456,12 @@ require_once("../common/verifyLogin.php");
                     if (month.options[i].selected)
                         checkMonth = month.options[i].value;
                 }
-                request.open("GET", "dealInfoQuery.php?checkYear=" + "&checkMonth=");
+                request.open("GET", "dealInfoQuery.php?checkYear=" + checkYear + "&checkMonth=" + checkMonth);
                 request.send();
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {
                         if (request.status === 200) {
+                            var obj = JSON.parse(request.responseText);
                             if (page == 1)
                                 return false;
                             $("#tr1").show();
@@ -469,8 +470,8 @@ require_once("../common/verifyLogin.php");
                             $("#tr4").show();
                             $("#tr5").show();
                             page--;
-                            var obj = JSON.parse(request.responseText);
                             for (var i = 1; i <= 5; i++) {
+
                                 document.getElementById("sellername" + i).innerHTML = "";
                                 document.getElementById("goodsname" + i).innerHTML = "";
                                 document.getElementById("price" + i).innerHTML = "";

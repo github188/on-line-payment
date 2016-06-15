@@ -17,7 +17,7 @@ if(!empty($email) && !empty($userType) && !empty($password) && !empty($money))
     $userType = mysqli_escape_string($conn,$userType);
     $email = mysqli_escape_string($conn,$email);
     $password = mysqli_escape_string($conn,$password);
-    $money = mysqli_escape_string($conn,$money);
+    $money = intval(mysqli_escape_string($conn,$money));
 
     if($userType === 'buyer'){
         $check1 ="select * from `buyer` where `email`= '".$email."'";

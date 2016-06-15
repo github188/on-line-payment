@@ -5,6 +5,14 @@
       <webServer id="3a8cda9e-778e-4d46-83a1-fa73c8c6f638" name="myLocalHost" url="http://localhost/">
         <fileTransfer mountedRoot="/var/www/html" accessType="MOUNT" />
       </webServer>
+      <webServer id="5dc0abf4-a364-410b-8da4-b85ba700235a" name="徐亮腾讯云" url="http://115.159.36.21">
+        <fileTransfer host="115.159.36.21" port="21" password="dfdadfcbdfd3dfc7dfcfdfc4dfdedf9bdf98df99" username="payment">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="21" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

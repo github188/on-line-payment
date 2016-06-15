@@ -109,18 +109,38 @@ http://115.159.36.21/payment/Booking/index.php
 | birthday    | date         | YES  |     | NULL    |                |
 +-------------+--------------+------+-----+---------+----------------+
 ```
-IDauthReq
+###IDauthReq （身份认证处理表）
 ```
-+-----------+-------------+------+-----+---------+-------+
-| Field     | Type        | Null | Key | Default | Extra |
-+-----------+-------------+------+-----+---------+-------+
-| u_id      | int(11)     | NO   |     | NULL    |       |
-| userType  | varchar(10) | NO   |     | NULL    |       |
-| realName  | varchar(40) | NO   |     | NULL    |       |
-| ID        | varchar(25) | NO   |     | NULL    |       |
-| processed | tinyint(1)  | NO   |     | NULL    |       |
-+-----------+-------------+------+-----+---------+-------+
++-----------+-------------+------+-----+---------+-------+----------------------------+
+| Field     | Type        | Null | Key | Default | Extra |  描述                      |
++-----------+-------------+------+-----+---------+-------+----------------------------+
+| u_id      | int(11)     | NO   |     | NULL    |       |  用户id
+| userType  | varchar(10) | NO   |     | NULL    |       |  用户类型（buyer or seller）
+| realName  | varchar(40) | NO   |     | NULL    |       |  真实姓名
+| ID        | varchar(25) | NO   |     | NULL    |       |  身份证号码
+| processed | tinyint(1)  | NO   |     | NULL    |       |  是否被管理员处理（bool类型）
++-----------+-------------+------+-----+---------+-------+----------------------------+
 ```
+
+###order  （订单表）
+```
+CREATE TABLE `order`
+(
+    o_id INT(11) PRIMARY KEY NOT NULL,          订单id
+    s_id INT(11),                               此订单的卖方id
+    b_id INT(11),                               此订单的买方id
+    state VARCHAR(20),                          订单状态
+    type VARCHAR(10),                           商品类型（酒店 or 航班）
+    g_id INT(11),                               商品id（商品id和类型唯一确定商品）
+    price DECIMAL(8,2),                         商品购买价格
+    g_name VARCHAR(50)                          商品名称
+    num INT(11),                                商品购买数量
+    begtime DATETIME,                           订单开始时间
+    endtime DATETIME,                           订单结束时间
+
+);
+```
+
 ##时间计划
 * 第二周 (5.12)周四讨论
 * 第三周 (5.18)交初期报告

@@ -29,6 +29,7 @@ $key_m = $_GET['test'];
 $key = intval($key_m) ^ 1372;
 $uid = intval($token) ^ $key;
 
+
 if ($userType=='buyer')
 {
     $tableName = 'buyer';

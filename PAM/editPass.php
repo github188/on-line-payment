@@ -28,7 +28,7 @@ if ($_SESSION['login'] === true) {
         if ($result) {
             $row = mysqli_fetch_array($result);
 
-            if ($row['password'] === $oldPassIn) {
+            if (strtolower($row['password']) === strtolower($oldPassIn)) {
                 //旧密码相等
                 $user_id = $_SESSION['uid'];
                 if ($_SESSION['userType'] === 'seller') {

@@ -37,6 +37,8 @@ else if(!empty($checkYear) && !empty($checkMonth) ){
     else{
         $endtime = "$checkYear-$nextMonth-01 00:00:00";
     }
+} else {
+    return;
 }
 $buyercheck="select * from `buyer` where `email`= '".$email."'";
 $setbuyer = mysqli_query($conn,$buyercheck,MYSQLI_STORE_RESULT);

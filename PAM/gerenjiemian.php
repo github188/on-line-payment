@@ -287,7 +287,9 @@ require_once("../common/verifyLogin.php");
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {
                         if (request.status === 200) {
-                            alert("success");
+                            
+
+                            alert(request.responseText);
                         }
                         else {
                             alert("发生错误：" + request.status);

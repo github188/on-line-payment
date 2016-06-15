@@ -57,6 +57,7 @@ function rememberme($userType)
     $identifier = md5($salt . md5($_SESSION['email'] . $salt));
     $token = md5(uniqid(rand(), true));
     $timeout = time() + 60 * 60 * 24 * 7;
+//    $timeout = time() + 60;
     $user_id = $_SESSION['uid'];
     if ($userType === 'seller') {
         $sql = "update seller set rememberMe_id='$identifier', token='$token', timeout=$timeout 

@@ -129,8 +129,8 @@ CREATE TABLE `order`
     o_id INT(11) PRIMARY KEY NOT NULL,          订单id
     s_id INT(11),                               此订单的卖方id
     b_id INT(11),                               此订单的买方id
-    state VARCHAR(20),                          订单状态
-    type VARCHAR(10),                           商品类型（酒店 or 航班）
+    state INT(1),                          订单状态
+    type INT(1),                           商品类型（酒店 or 航班）
     g_id INT(11),                               商品id（商品id和类型唯一确定商品）
     price DECIMAL(8,2),                         商品购买价格
     g_name VARCHAR(50)                          商品名称

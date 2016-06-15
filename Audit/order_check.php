@@ -34,7 +34,7 @@
             $arr['state'] = "Invaild order state";
 
         // 判断 $type 是否合法
-        if (!preg_match("/^\d{1}$/", $type) || $type <= 0 || $type > STATE_MAX)
+        if (!preg_match("/^\d{1}$/", $type) || $type <= 0 || $type > TYPE_MAX)
             $arr['type'] = "Invaild order type";
         else {
             // 判断 $g_id, $g_name 是否合法

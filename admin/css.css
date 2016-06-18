@@ -1,0 +1,58 @@
+#container{
+    background: #EEEEEE;
+    width: 980px;
+    margin: 0px auto;
+}
+#header{
+    background: #000000;
+    color: #ffffff;
+    width: 100%;
+    height: 80px;
+
+
+}
+#main{
+    background: ;
+    width: 100%;
+    height: 600px;
+
+
+}
+#footer{
+    background: #000000;
+    color: #ffffff;
+    width: 100%;
+    height: 30px;
+}
+
+#navigator{
+    color: #ffffff;
+    background: #6666AA;
+    float: left;
+    width: 20%;
+    height: 100%;
+}
+#content1,#content2,#content3{
+    color: #000000;
+    background: #eeeeee;
+    float: left;
+    width: 80%;
+    height: 100%;
+}
+.box{
+    color: #ffffff;
+    background: #0000ee;
+    width: 100%;
+    height: 50px;
+    margin-top: 5px;
+}
+.span{
+    height:100%;
+    width:50%;
+    position:absolute;
+}
+.chosen{
+    background: #ffffff;
+    width: 100%;
+    height:50px;
+}

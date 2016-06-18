@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>远途网在线预订系统管理</title>
+    <meta name="description" content="远途网提供便捷快速的酒店机票服务">
+    <meta name="keywords" content="酒店 机票 后台 管理">
+    <meta name="author" content="软件工程基础2.3组">
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <link href="http://www.bootcdn.cn/assets/css/site.min.css" rel="stylesheet">
+    <script>var _hmt = _hmt || [];</script>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style type="text/css" title="text/css" media="all">
+        html{
+            height:100%;
+            font-size: 25px;
+        }
+        body{
+            height:100%;margin:0px;padding:0px
+        }
+    </style>
+    <style type="text/css">
+        .search-info{
+            font-size: large;
+        }
+        .hot-place{
+            width: 256px;
+            height: 100px;
+        }
+        #headline-container{
+            height: 50px;
+        }
+        #headline-container h1{
+            color: #27AE60;
+            position:absolute;
+            left: 20%;
+          }
+        #headline-container h1 span{
+            color: green;
+            font-size: 20px;
+        }
+        #content-container{
+            background-color: #27AE60;
+            color: #fff;
+            border-radius: 25px;
+            border:2px solid #a1a1a1;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" media="all" href="css/daterangepicker.css" />
+    <script src="//cdn.bootcss.com/moment.js/2.13.0/moment.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-daterangepicker/2.1.21/daterangepicker.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $(".delete").click(function(){
+        var id = $("input:text[name='id']").val();
+        //alert("id="+id);
+        var i=0;
+        var length = $("#tbody tr").length;
+        //alert("length"+length);
+        for(i=0;i<length;i++)
+        {
+          children=$("#tbody tr:eq("+i+")").children().get(1);
+         // alert("id="+children.innerHTML+" i="+i);
+
+          if(children.innerHTML == id){
+            break;
+          }
+        }
+        if(i>=length)
+          $("#info").text("enter right id");
+        else
+          delete_data(id);
+        $("#tbody tr:eq("+i+")").remove();
+      });
+      $(".verify").click(function(){
+        var id = $("input:text[name='id']").val();
+        var i=0;
+        var length = $("#tbody tr").length;
+        for(i=0;i<length;i++)
+        {
+          children=$("#tbody tr:eq("+i+")").children().get(1);
+          if(children.innerHTML == id){
+            break;
+          }
+        }
+        if(i>=length)
+          $("#info").text("enter right id");
+        else
+        {
+          cur_id=$("#tbody tr:eq("+i+")").children().get(1);
+          cur_type=$("#tbody tr:eq("+i+")").children().get(2);
+          cur_name=$("#tbody tr:eq("+i+")").children().get(3);
+          cur_passwd=$("#tbody tr:eq("+i+")").children().get(4);
+          $("#verify_id2").text("原ID：" + cur_id.innerHTML);
+          $("#verify_id").attr("value", cur_id.innerHTML);
+          $("#verify_name2").text("原姓名：" + cur_name.innerHTML);
+          $("#verify_name").attr("value", cur_name.innerHTML);
+          $("#verify_passwd2").text("原密码：" + cur_passwd.innerHTML);
+          $("#verify_passwd").attr("value", cur_passwd.innerHTML);
+          $("#verify_type2").text("原类型：" + cur_type.innerHTML);
+          $("#verify_type").val(cur_type.innerHTML);
+          $("#m_verify_div").show();
+          $("#m_maintain_div").hide();
+        }
+      });
+    });
+  </script>
+  <script type="text/javascript">
+    var xmlHttp;
+
+    function delete_data(m_id){
+      xmlHttp=GetXmlHttpObject();
+      if (xmlHttp==null){
+        alert ("Browser does not support HTTP Request");
+        return;
+      }
+      var url="m_delete.php";
+      url=url+"?m_id="+m_id;
+      url=url+"&sid="+Math.random();
+      xmlHttp.onreadystatechange=stateChanged2;
+      xmlHttp.open("GET",url,true);
+      xmlHttp.send(null);
+    }
+
+    function show()
+    {
+      xmlHttp=GetXmlHttpObject();
+      if (xmlHttp==null){
+        alert ("Browser does not support HTTP Request");
+        return;
+      }
+      var id = document.getElementById("id").value;
+      var name = document.getElementById("name").value;
+      var type = document.getElementById("type").value;
+      var url="m_find.php";
+      if(id.length>0)
+        url=url+"?id="+id;
+      else
+        url=url+"?id=null";
+      if(name.length>0)
+        url=url+"&name="+name;
+      else
+        url=url+"&name=null";
+      if(type.length == "none")
+        url=url+"&type=null";
+      else
+        url=url+"&type="+type;
+      url=url+"&sid="+Math.random();
+      xmlHttp.onreadystatechange=stateChanged;
+      xmlHttp.open("GET",url,true);
+      xmlHttp.send(null);
+    }
+    function stateChanged2()
+    {
+      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
+          document.getElementById("info").innerHTML=xmlHttp.responseText;
+      }
+    }
+    function stateChanged()
+    {
+      if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
+        var resp = xmlHttp.responseText;
+        if(resp == "none")
+          document.getElementById("tbody").innerHTML="<tr><h2>not found</h2></tr>";
+        else{
+          document.getElementById("tbody").innerHTML=xmlHttp.responseText;
+        }
+      }
+    }
+
+    function GetXmlHttpObject()
+    {
+      var xmlHttp=null;
+      try{
+        xmlHttp=new XMLHttpRequest();
+      }
+      catch (e){
+        try{
+          xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+        }
+        catch (e){
+          xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+      }
+      return xmlHttp;
+    }
+  </script>
+
+</head>
+
+<body class="home-template">
+    <!--这是网页的抬头-->
+    <div class="container">
+          <div class="row" id="headline-container">
+               <h1 class="col-md-12">
+                    <span><img src="img/yuantuwang.jpg" width="70" height="70" alt="">&nbsp;&nbsp;</span>
+                    <em><strong>远途网<span>&nbsp;&nbsp;&nbsp;&nbsp;系统管理后台</span></strong></em>
+               </h1>
+          </div>
+    </div>
+    <!--这是网页抬头下的横线-->
+    <hr size=1 style="height:3px;background-color: green">
+    <!--这是上方导航栏：首页、用户系统维护、订单系统维护、管理员维护-->
+    <nav  class="navbar navbar-default" style="margin-top: 0px; margin-bottom: 0px; margin: 0px;">
+      <div class="container">
+        <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <a class="navbar-brand" >管理员信息维护系统</a>
+          </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <!--这是导航列表-->
+              <ul class="nav navbar-nav">
+                  <li><a href="m_maintain.html">管理员信息管理</a></li>
+                  <li><a href="m_add.html">新增管理员</a></li>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="m_login.html">登录</a></li>
+                  <li><a href="m_logout.php">登出</a></li>
+              </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </div>
+    </nav>
+    <!--修改管理员信息-->
+    <div class="container-fluid" id="m_verify_div" style="display:none">
+      <div class="panel panel-default">
+        <div class="panel-heading"><h3 class="panel-title">修改管理员信息</h3></div>
+          <div id="verify_num"></div><br>
+          <form id="m_form" method="post" action="m_modify.php">
+              <span id="verify_id2"></span><br>
+              ID：<input type="text" name="new_id" id="verify_id" value=""><br><br>
+              <span id="verify_name2"></span><br>
+              姓名：<input type="text" name="new_name" id="verify_name" value=""><br><br>
+              <span id="verify_passwd2"></span><br>
+              密码：<input type="text" name="new_passwd" id="verify_passwd" value=""><br><br>
+              <span id="verify_type2"></span><br>
+              类别：<select name="new_type" id="verify_type">
+                <option value="order">订单管理员</option>
+                <option value="user">用户管理员</option>
+                <option value="admin">系统管理员</option>
+              </select><br><br>
+              <input type="submit" name="submit" value="修改">
+              <input type="reset" name="reset" value="重置">
+          </form>
+      </div>
+    </div>
+
+    <div class="container-fluid" id="m_maintain_div">
+        <!--查询管理员信息：根据ajax技术 填入管理员id和姓名和类别，自动查询显示-->
+        <div class="col-md-12 main">
+              <div>
+                <h2 class="sub-header">管理员信息维护</h2>
+                <input placeholder="管理员id" name="id" id="id" type="text" onchange="show()" value="">
+                <input placeholder="管理员姓名" name="name" id="name" type="text" onchange="show()" value="">
+                <select name="type" id="type" onchange="show()">
+                  <option value="none" selected="selected">管理员类别</option>
+                  <option value="order">订单管理员</option>
+                  <option value="user">用户管理员</option>
+                  <option value="admin">系统管理员</option>
+                </select>
+                <button type="button" class="btn btn-xs btn-danger delete">删除</button>
+                <button type="button" class="btn btn-xs btn-warning verify">修改</button>
+                <div id="info"></div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>管理员ID</th>
+                      <th>管理员类别</th>
+                      <th>姓名</th>
+                      <th>密码</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody">
+
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div>
+
+<footer id="footer" class="footer hidden-print">
+    <div class="container">
+        <div class="row">
+            <div class="footer-about col-md-6 col-sm-12" id="about">
+                <h4>关于 远途网</h4>
+                <p>远途网是 浙江大学张引老师软件工程基础课程第二项目组支持并维护的开源项目，致力于为提供稳定、快速便捷的免费酒店机票查询和预订服务。项目主要同步于 <a href="https://github.com/onlinePayment/on-line-payment" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-github.com'])">on-line-payment</a> 仓库。</p>
+                <p>自<time>2016年13月32日</time>上线以来已经为超过十万个用户提供了稳定、可靠、便捷服务。</p>
+                <p>反馈或建议请发送邮件至：phpsoup@163.com</p></div>
+
+            <div class="footer-links col-md-3 col-sm-12">
+                <h4>友情链接</h4>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.bootcss.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-bootcss.com'])">Bootstrap 中文网</a></li>
+                    <li><a href="http://www.ghostchina.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-ghostchina.com'])">Ghost 中国</a></li>
+                    <li><a href="http://www.jquery123.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-jquery123.com'])">jQuery 中文 API</a></li>
+                    <li><a href="http://github.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-github.com'])">Github</a></li></ul></div>
+
+            <div class="footer-techs col-md-3 col-sm-12">
+                <h4>我们用到的技术</h4>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.bootcss.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-bootcss.com'])">Bootstrap</a></li>
+                    <li><a href="http://www.jquery123.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-jquery123.com'])">jQuery</a></li>
+                    <li><a href="http://php.net/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-php.cn'])">PHP</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy-right" align="center"><span>copyright&copy; 2016</span> </div>
+</footer>
+</body>
+

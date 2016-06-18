@@ -14,26 +14,52 @@
         header("Location: my_hotel.html");//如果没有输入id，进行重定向
     $hotelid=$_GET['id'];//用户请求的id,用于进行数据库的查询
     //以下都是需要用数据库查询得到的信息
+    $dbc = @mysqli_connect ('localhost', 'payment', 'payment123', 'payment') OR die ('Could not connect to MySQL: ' . mysqli_connect_error() );
+                 mysqli_set_charset($dbc, 'utf8');
+                 $qh= "SELECT * FROM hotel WHERE hotel.h_id='$hotelid'"; 
+                 $r= @mysqli_query($dbc,$qh);          
+                 $row=mysqli_fetch_assoc($r);
+                     $hotelid=$row['h_id'];
+                     $name = $row['hotel_name'];
+                     $pic = $row['picbig'];
+                     $province = $row['add_province'];
+                     $city = $row['add_city'];
+                     $block = $row['add_block'];
+                     $road = $row['add_street'];
+                     $num_people = $row['reviewer'];
+                     $road = $row['add_street'];
+                     $price = $row['hotel_price'];
+                     $point = $row['score'];
+                     $rank = $row['star'];
+                     $longitude = $row['logitude'];
+                     $latitude = $row['latitude'];
+                     $num_point = $row['reviewer'];
+    mysqli_free_result($r);
 
-    //查询得到下列信息
+    $rooms=array();
+                $qr= "SELECT * FROM room WHERE room.hotel_name ='$name'"; 
+                $s= @mysqli_query($dbc,$qr); 
+                while($row=mysqli_fetch_assoc($s)){    
+                        $rooms[]=array("type" => $row['type'], "price" => $row['room_price']);   
+                        }
+    mysqli_free_result($s);
 
-    $hotelid=2;
-    $num_point=13;
-    $name="杭州紫金港超级大酒店";
-    $province="浙江省";
-    $city="杭州市";
-    $block="西湖区";
-    $road="申花路798号";
-    $num_people=1024;//曾经入住的人数
-    $num_comments=2;//评论的个数
-    $rank=3;//酒店星级
-    $point=3.6;
-    $roomtypes=array(array("单人间",198),array("标准间",215),array("总统套房",361));//房间型号列表
-    $comments=array("手机用户1345657235" => "真的很不错啊", "手机用户13456572456" => "拥护习主席，拥护党中央");//评论列表
-    $longitude=120.100133;
-    $latitude=30.312355;
-    $pic="hotel/0002.jpg";//图片的地址
+    $comments=array();
+                $qc= "SELECT * FROM comments WHERE comments.hotel_name ='$name'"; 
+                $t= @mysqli_query($dbc,$qc); 
+                $num_comments=0;
+                while($row=mysqli_fetch_assoc($t)){    
+                        $comments[]=array("username" => $row['username'], "comment" => $row['comment']);
+                        $num_comments=$num_comments+1;
+                        }
+    mysqli_free_result($t);
+
+    mysqli_close($dbc); 
+
 ?>
+<link rel="stylesheet" type="text/css" media="all" href="css/daterangepicker.css" />
+<script src="//cdn.bootcss.com/moment.js/2.13.0/moment.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-daterangepicker/2.1.21/daterangepicker.js"></script>
 
 <div class="main">
 <div>
@@ -92,8 +118,8 @@
             <td>预订</td>
         </tr>
         <?php 
-        foreach ($roomtypes as $room) {
-                echo '<tr> <td>'. $room[0] . '</td><td>大床</td><td>免费无线网络</td><td><strong class="price">' . '￥' . $room[1] . '</strong></td><td><a href="order-hotel.php?hotelid=' . $hotelid .'"><button type="button" class="btn btn-info btn-sm">马上预订<img src="img/goto.png"></button></a></td></tr>';
+        foreach ($rooms as $room) {
+                echo '<tr> <td>'. $room['type'] . '</td><td>大床</td><td>免费无线网络</td><td><strong class="price">' . '￥' . $room['price'] . '</strong></td><td><a href="order-hotel.php?hotelid=' . $hotelid .'&type=' . $room['type'] .'"><button type="button" class="btn btn-info btn-sm">马上预订<img src="img/goto.png"></button></a></td></tr>';
             }
         ?>
     </table>
@@ -115,9 +141,9 @@
                 <div class="panel-heading"><h4>用户评论</h4></div>
             </div>
             <?php
-                foreach ($comments as $user => $content) {
+                foreach ($comments as $content) {
                     echo  '<div  class="list-group-item">
-                <user>' . $user . '：</user>' . $content . '</div>';
+                <user>' . $content['username'] . '：</user>' . $content['comment'] . '</div>';
                 }
             ?>
         </div>

@@ -49,73 +49,57 @@
     <p style="font-size: x-large">大家都爱去哪里？</p>
     <div class="row">
         <div class="col-lg-3">
-            <img src="img/1569.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
+            <img src="img/beijing.jpg" class="hot-place">
+            <a href="search_hotel.php?city=北京" class="city">北京</a>
             <p>北京市</p>
         </div>
         <div class="col-lg-3">
-            <img src="img/1569.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>     
+            <img src="img/chengdu.jpg" class="hot-place">
+            <a href="search_hotel.php?city=成都" class="city">成都</a>
+            <p>四川省</p>     
         </div>
         <div class="col-lg-3">
-            <img src="img/1569.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>
+            <img src="img/haerbin.jpg" class="hot-place">
+            <a href="search_hotel.php?city=哈尔滨" class="city"><span>哈尔滨</span></a>
+            <p>黑龙江省</p>
         </div>
         <div class="col-lg-3">
-            <img src="img/1569.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>
+            <img src="img/hangzhou.jpg" class="hot-place">
+            <a href="search_hotel.php?city=杭州" class="city"><span>杭州</span></a>
+            <p>浙江省</p>
         </div>
         </div>
 
     <div class="row">
         <div class="col-lg-3">
-            <img src="img/14690.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>
+            <img src="img/nanjing.jpg" class="hot-place">
+            <a href="search_hotel.php?city=南京" class="city"><span>南京</span></a>
+            <p>江苏省</p>
         </div>
         <div class="col-lg-3">
-            <img src="img/14690.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>     
+            <img src="img/xian.jpg" class="hot-place">
+            <a href="search_hotel.php?city=西安" class="city"><span>西安</span></a>
+            <p>陕西省</p>     
         </div>
         <div class="col-lg-3">
-            <img src="img/14690.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>
+            <img src="img/shanghai.jpg" class="hot-place">
+            <a href="search_hotel.php?city=上海" class="city"><span>上海</span></a>
+            <p>上海市</p>
         </div>
         <div class="col-lg-3">
-            <img src="img/14690.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-3">
-            <img src="img/16056.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>
-        </div>
-        <div class="col-lg-3">
-            <img src="img/16056.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>     
-        </div>
-        <div class="col-lg-3">
-            <img src="img/16056.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>
-        </div>
-        <div class="col-lg-3">
-            <img src="img/16056.jpg" class="hot-place">
-            <a href="search_hotel.php?city=北京"><span>北京</span></a>
-            <p>北京市</p>
+            <img src="img/haikou.jpg" class="hot-place">
+            <a href="search_hotel.php?city=海口" class="city"><span>海口</span></a>
+            <p>海南省</p>
         </div>
     </div>
 </div>
+
+<style type="text/css">
+    .city
+    {
+        color: blue;
+    }
+</style>
 
 <?php
 include("include/footer.html");

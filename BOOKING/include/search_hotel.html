@@ -16,12 +16,12 @@
     </div><!-- /input-group -->
     <div class="col-lg-3">
     <span class="search-info" name="hotelInfo">酒店信息</span>
-      <input type="text" class="form-control" placeholder="酒店名">
+      <input type="text" class="form-control" placeholder="酒店名" id="hotel-info">
       <br class="search-info">
     </div><!-- /input-group -->
     <div class="col-lg-2">
     <br class="search-info">
-      <button class="btn btn-info btn-sm" type="button">搜索</button>
+      <button class="btn btn-info btn-sm" type="button" id="search-button">搜索</button>
       <br class="search-info">
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
@@ -37,5 +37,21 @@
         });
 
          $('#cityquery').citySelect();
-    });
+
+         $('#search-button').click(function(){
+            city=$('#cityquery');
+            hotel_info=$('#hotel-info');
+            if(city.val()===""){
+                alert("必须输入城市");
+                return false;
+            }
+
+            location.href = "search_hotel.php?city="+city.val()+"&info="+hotel_info.val();
+        });
+     });
+
+</script>
+
+<script type="text/javascript">
+    
 </script>

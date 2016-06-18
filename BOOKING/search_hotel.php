@@ -28,11 +28,6 @@
 <link href="//cdn.bootcss.com/raty/2.7.0/jquery.raty.css" rel="stylesheet">
 <script src="//cdn.bootcss.com/raty/2.7.0/jquery.raty.js"></script>
 
-<script type="text/javascript">
-    $(function(){
-        $('#hotelstars').raty();
-    });
-</script>
 
 <?php
         include("include/title.html");
@@ -55,41 +50,57 @@
                 <ul class="list-group">
                 <li class="list-group-item filter-tip">酒店名称</li>
                     <li class="list-group-item">
-                    <input type="text" name="city" class="form-control" placeholder="请输入酒店名" />
+                    <input type="text" name="city" class="form-control" placeholder="请输入酒店名" id="hotel-name"/>
+                    <button class="btn btn-warning" id="fliter-hotel">筛选</button>
                     </li>
                      <li class="list-group-item filter-tip">价格</li>
                     <li class="list-group-item">
-    <p><input type="checkbox" name="price" value="100-" /><span class="label label-warning">100以下  </span></p>
-    <p><input type="checkbox" name="price" value="200-" /><span class="label label-warning">100-200  </span></p>
-    <p><input type="checkbox" name="price" value="200+"/><span class="label label-warning">200-300  </span></p>
-    <p><input type="checkbox" name="price" value="200+" /><span class="label label-warning">300-500  </span></p>
-    <p><input type="checkbox" name="price" value="200+" /><span class="label label-warning">500以上  </span> </p>
+    <p><input type="checkbox" name="price" value="100" checked="checked"/><span class="label label-warning">100以下  </span></p>
+    <p><input type="checkbox" name="price" value="200" checked="checked"/><span class="label label-warning">100-200  </span></p>
+    <p><input type="checkbox" name="price" value="300" checked="checked"/><span class="label label-warning">200-300  </span></p>
+    <p><input type="checkbox" name="price" value="500" checked="checked"/><span class="label label-warning">300-500  </span></p>
+    <p><input type="checkbox" name="price" value="500+" checked="checked"/><span class="label label-warning">500以上  </span> </p>
            <li class="list-group-item filter-tip">星级</li>       
-           <li class="list-group-item"> <span id="hotelstars"></span></li>  
+           <li class="list-group-item"> <span id="hotelstars"></span><div id="results"></div></li>  
                       <li class="list-group-item filter-tip">评分</li>       
            <li class="list-group-item"> 
-    <p><input type="checkbox" name="price" value="100-" /><span class="label label-warning">3分  还凑合吧 </span></p>
-    <p><input type="checkbox" name="price" value="200-" /><span class="label label-warning">4分 相当不错 </span></p>
-    <p><input type="checkbox" name="price" value="200+"/><span class="label label-warning">5分 完美体验 </span></p>
+    <p><input type="checkbox" name="stars" value="3" checked="checked"/><span class="label label-warning">3分  还凑合吧 </span></p>
+    <p><input type="checkbox" name="stars" value="4" checked="checked"/><span class="label label-warning">4分 相当不错 </span></p>
+    <p><input type="checkbox" name="stars" value="5" checked="checked"/><span class="label label-warning">5分 完美体验 </span></p>
                   </li>
                 </ul>
             </div>
            
 
         <?php 
-            if(!isset($_Get['search'])||empty($_Get['search'])){
-
-            }//如果没有查询信息应该,应该显示默认的信息
-            else{
-
-            }
-
-            $hotels['01']=array("id" => 1, "name" => "紫金港大酒店", "picture" => "hotel/0001.jpg", "province" => "浙江省", "city" =>"杭州市", "block" => "西湖区", "hot" => "45","road" => "申花路798号",'price' => 129, "point" => 3.5,"rank" => 3,"description" => "靠近浙江大学紫金港校区");
-
-        
-            //进行数据库的搜索
-
+            $hotels=array();
+            if(!isset($_GET['city'])||empty($_GET['city'])){
+            $dbc = @mysqli_connect ('localhost', 'payment', 'payment123', 'payment') OR die ('Could not connect to MySQL: ' . mysqli_connect_error() );
+                 mysqli_set_charset($dbc, 'utf8');
+                 $q= "SELECT * FROM hotel"; 
+                 $r= @mysqli_query($dbc,$q);          
+                 while($row=mysqli_fetch_assoc($r)){    
+                        $hotels[]=array("id" => $row['h_id'], "name" => $row['hotel_name'], "picture" => $row['picsmall'], "province" => $row['add_province'], "city" =>$row['add_city'], "block" => $row['add_block'], "hot" => $row['reviewer'], "road" => $row['add_street'], 'price' => $row['hotel_price'], "point" => $row['score'],"rank" => $row['star'],"description" => $row['add_province'] . $row['add_city'] . $row['add_block'] . $row['add_street']);   
+                        }
+            mysqli_free_result($r);    
+            mysqli_close($dbc); 
+            }        //如果没有查询信息，就显示全部的信息
+           else{
+                 $city=$_GET['city'];
+                 $dbc = @mysqli_connect ('localhost', 'payment', 'payment123', 'payment') OR die ('Could not connect to MySQL: ' . mysqli_connect_error() );
+                 mysqli_set_charset($dbc, 'utf8');
+                 $q= "SELECT * FROM hotel WHERE hotel.add_city='$city' ORDER BY hotel.heat"; 
+                 $r= @mysqli_query($dbc,$q);     
+                 while($row=mysqli_fetch_assoc($r)){    
+                        $hotels[]=array("id" => $row['h_id'], "name" => $row['hotel_name'], "picture" => $row['picsmall'], "province" => $row['add_province'], "city" =>$row['add_city'], "block" => $row['add_block'], "hot" => $row['reviewer'], "road" => $row['add_street'], 'price' => $row['hotel_price'], "point" => $row['score'],"rank" => $row['star'],"description" => $row['add_province'] . $row['add_city'] . $row['add_block'] . $row['add_street']);   
+                        }
+            mysqli_free_result($r);    
+            mysqli_close($dbc);
+              } 
+       
          ?>
+          
+
         <div class="list-group packages" id="hotels">
         <div class="col-md-9" >
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -122,7 +133,7 @@
                 echo '</div><div class="col-md-4">';
                 echo '<span> <hot>' . $hotel['hot'] . '</hot>名用户曾经入住</span><br>';
                 echo '<span>房价： ￥<price>' . $hotel['price'] . '</price><i class="lowest">起</i></span><br>';
-                echo '<span></i> 评分： <strong><rank>' . $hotel['point'] . '/5</rank></strong></span>';
+                echo '<span></i> 评分： <strong><points>' . $hotel['point'] . '/5</points></strong></span>';
                 echo '<br><button type="button" class="btn btn-info navbar-btn">点击以查看更多信息 <img src="img/goto.png"></button></div></div></a>';
             }
         ?>
@@ -131,7 +142,6 @@
 
 <?php
     include("include/footer.html");
-    include("include/scripts.html");
 ?>
 
-<!--<script type="text/javascript" src="js/mysite.js"></script>-->
+<<script type="text/javascript" src="js/search-hotel.js"></script>

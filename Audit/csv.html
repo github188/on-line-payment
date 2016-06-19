@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>远途网在线预订系统管理</title>
+    <meta name="description" content="远途网提供便捷快速的酒店机票服务">
+    <meta name="keywords" content="酒店 机票 后台 管理">
+    <meta name="author" content="软件工程基础2.4组">
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet">
+    <link href="http://www.bootcdn.cn/assets/css/site.min.css" rel="stylesheet">
+    <script>var _hmt = _hmt || [];</script>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style type="text/css" title="text/css" media="all">
+        html{
+            height:100%;
+            font-size: 25px;
+        }
+        body{
+            height:100%;margin:0px;padding:0px
+        }
+    </style>
+    <style type="text/css">
+        .search-info{
+            font-size: large;
+        }
+        .hot-place{
+            width: 256px;
+            height: 100px;
+        }
+        #headline-container{
+            height: 50px;
+        }
+        #headline-container h1{
+            color: #27AE60;
+            position:absolute;
+            left: 20%;
+        }
+        #headline-container h1 span{
+            color: green;
+            font-size: 20px;
+        }
+        #content-container{
+            background-color: #27AE60;
+            color: #fff;
+            border-radius: 25px;
+            border:2px solid #a1a1a1;
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css" media="all" href="css/daterangepicker.css" />
+    <script src="//cdn.bootcss.com/moment.js/2.13.0/moment.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-daterangepicker/2.1.21/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".search").click(function(){
+                $("#info").text("搜索历史报表...");
+                var time=$("input:text[name='time']").val();
+                search_csv(time);
+            });
+
+        });
+    </script>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="css/daterangepicker-bs3.css" />
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script type="text/javascript" src="js/daterangepicker.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#time').daterangepicker({
+                timePicker: false,
+                format: 'YYYY-MM-DD'
+            }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".modify").click(function(){
+                var o_id = $("input:text[name='o_id']").val();
+                if ( o_id != "" ) {
+                    $("#info2").text("修改错误订单...");
+                    var new_o_id = $("input:text[name='new_o_id']").val();
+                    var s_id = $("input:text[name='s_id']").val();
+                    var b_id = $("input:text[name='b_id']").val();
+                    var g_id = $("input:text[name='g_id']").val();
+                    var g_name = $("input:text[name='g_name']").val();
+                    var state = $("input:text[name='state']").val();
+                    var type = $("input:text[name='type']").val();
+                    var price = $("input:text[name='price']").val();
+                    var num = $("input:text[name='num']").val();
+                    var begtime = $("input:text[name='begtime']").val();
+                    var endtime = $("input:text[name='endtime']").val();
+                    modify_error_order(o_id, new_o_id, s_id, b_id, g_id, g_name, state, type, price, num, begtime, endtime);
+                }
+                else
+                    $("#info2").text("请输入订单ID");
+            });
+
+        });
+    </script>
+
+    <script type="text/javascript">
+        var xmlHttp;
+        var xmlHttp2;
+        function search_csv(time){
+            xmlHttp=GetXmlHttpObject();
+            if (xmlHttp==null){
+                alert ("Browser does not support HTTP Request");
+                return;
+            }
+            var split = time.split(" - ");
+            var url="search_csv.php?begdate="+split[0]+"&enddate="+split[1];
+            xmlHttp.onreadystatechange=tbodyStateChanged;
+            xmlHttp.open("GET",url,true);
+            xmlHttp.send(null);
+
+            xmlHttp2=GetXmlHttpObject();
+            if (xmlHttp2==null){
+                alert ("Browser does not support HTTP Request");
+                return;
+            }
+            var url2="search_csv_num.php?begdate="+split[0]+"&enddate="+split[1];
+            xmlHttp2.onreadystatechange=infoStateChanged;
+            xmlHttp2.open("GET",url2,true);
+            xmlHttp2.send(null);
+            $("#csv_list_div").show();
+        }
+
+        function tbodyStateChanged()
+        {
+            if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){
+                document.getElementById("tbody").innerHTML=xmlHttp.responseText;
+            }
+        }
+
+        function infoStateChanged()
+        {
+            if (xmlHttp2.readyState==4 || xmlHttp2.readyState=="complete"){
+                document.getElementById("info").innerHTML=xmlHttp2.responseText;
+            }
+        }
+        function GetXmlHttpObject()
+        {
+            var xmlHttp=null;
+            try{
+                // Firefox, Opera 8.0+, Safari
+                xmlHttp=new XMLHttpRequest();
+            }
+            catch (e){
+                //Internet Explorer
+                try{
+                    xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e){
+                    xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            }
+            return xmlHttp;
+        }
+    </script>
+
+</head>
+
+<body class="home-template">
+<!--这是网页的抬头-->
+<div class="container">
+    <div class="row" id="headline-container">
+        <h1 class="col-md-12">
+            <span><img src="img/yuantuwang.jpg" width="70" height="70" alt="">&nbsp;&nbsp;</span>
+            <em><strong>远途网<span>&nbsp;&nbsp;&nbsp;&nbsp;系统管理后台</span></strong></em>
+        </h1>
+    </div>
+</div>
+<!--这是网页抬头下的横线-->
+<hr size=1 style="height:3px;background-color: green">
+<!--这是上方导航栏：首页、用户系统维护、订单系统维护、管理员维护-->
+<nav  class="navbar navbar-default" style="margin-top: 0px; margin-bottom: 0px; margin: 0px;">
+    <div class="container">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand">审计系统</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!--这是导航列表-->
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html">异常订单查询与处理</a></li>
+                    <li><a href="csv.html">历史报表查询与下载</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../admin/m_login.html">登录</a></li>
+                    <li><a href="../admin/m_logout.php">登出</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </div>
+</nav>
+
+<div class="container-fluid" id="error_order_input_div">
+    <!--查询管理员信息：根据ajax技术 填入管理员id和姓名和类别，自动查询显示-->
+    <div class="col-md-12 main">
+        <div>
+            <h2>按日期查询历史报表</h2>
+            <input type="text" style="width:250px" name="time" id="time" readonly value="2016-01-01 - 2016-06-20">
+            <button type="button" id="button_search" class="btn btn-xs btn-warning search">查询</button>
+            <div id="info"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" id="csv_list_div">
+    <!--查询管理员信息：根据ajax技术 填入管理员id和姓名和类别，自动查询显示-->
+    <div class="col-md-12 main">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>时间</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $("#csv_list_div").hide();
+</script>
+
+<footer id="footer" class="footer hidden-print">
+    <div class="container">
+        <div class="row">
+            <div class="footer-about col-md-6 col-sm-12" id="about">
+                <h4>关于 远途网</h4>
+                <p>远途网是 浙江大学张引老师软件工程基础课程第二项目组支持并维护的开源项目，致力于为提供稳定、快速便捷的免费酒店机票查询和预订服务。项目主要同步于 <a href="https://github.com/onlinePayment/on-line-payment" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-github.com'])">on-line-payment</a> 仓库。</p>
+                <p>自<time>2016年13月32日</time>上线以来已经为超过十万个用户提供了稳定、可靠、便捷服务。</p>
+                <p>反馈或建议请发送邮件至：phpsoup@163.com</p></div>
+
+            <div class="footer-links col-md-3 col-sm-12">
+                <h4>友情链接</h4>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.bootcss.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-bootcss.com'])">Bootstrap 中文网</a></li>
+                    <li><a href="http://www.ghostchina.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-ghostchina.com'])">Ghost 中国</a></li>
+                    <li><a href="http://www.jquery123.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-jquery123.com'])">jQuery 中文 API</a></li>
+                    <li><a href="http://github.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-github.com'])">Github</a></li></ul></div>
+
+            <div class="footer-techs col-md-3 col-sm-12">
+                <h4>我们用到的技术</h4>
+                <ul class="list-unstyled">
+                    <li><a href="http://www.bootcss.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-bootcss.com'])">Bootstrap</a></li>
+                    <li><a href="http://www.jquery123.com/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-jquery123.com'])">jQuery</a></li>
+                    <li><a href="http://php.net/" target="_blank" onclick="_hmt.push(['_trackEvent', 'footer', 'click', 'footer-php.cn'])">PHP</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy-right" align="center"><span>copyright&copy; 2016</span> </div>
+</footer>
+</body>
+

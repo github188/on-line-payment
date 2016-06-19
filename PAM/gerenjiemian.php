@@ -292,7 +292,7 @@ require_once("../common/verifyLogin.php");
                 request.onreadystatechange = function () {
                     if (request.readyState === 4) {
                         if (request.status === 200) {
-                            
+
 
                             alert(request.responseText);
                         }
@@ -628,7 +628,7 @@ require_once("../common/verifyLogin.php");
 <div class="container">
     <div class="row" id="headline-container">
         <h1 class="col-md-1">
-            <img src="images/yuantuwang.jpg" width="60" height="60" alt="some_text">
+            <a href="../BOOKING/index.php"><img src="images/yuantuwang.jpg" width="60" height="60" alt="some_text"></a>
         </h1>
         <h1 class="col-md-2">
             <em><strong>远途网</strong></em>

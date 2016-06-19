@@ -28,8 +28,13 @@
           document.location.href = "../payment";
         }
         </script>
-  <!--<li><a href="collect.php?userid=what">我的收藏</a></li>-->
-     <li><a href="../PAM/login.html">退出</a></li>
+     <li><a href="orders.php?userid=what">我的订单</a></li>     <li><a href="collect.php?userid=what">我的收藏</a></li>
+     <li><a href="javascript:void(0);"onclick="js_method()">退出</a></li>
+      <script>
+        function js_method(){
+          document.location.href = "../PAM/logout.php";
+        }
+      </script>
     </ul>
   </li>
       </ul>

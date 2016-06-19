@@ -11,6 +11,8 @@ require_once("config.php");
 
 function verify_cookie()
 {
+    if(!isset($_COOKIE['auth'])) return false;
+
     global $salt;
     $conn = db_connect();
     list($identifier, $token, $userType) = explode(':', $_COOKIE['auth']);

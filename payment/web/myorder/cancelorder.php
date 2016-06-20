@@ -32,8 +32,8 @@
 			//if(!mysql_query($sql))
 				//echo "<script> alert(\"密码错误！请重新输入密码！\");window.history.back(-1);</script>";
 
-			$sql="select price,seller_id,buyer_id,state,type,g_id,num,begintime from order1 where o_id=$oid";
-			//$sql="select price,seller_id,buyer_id,state,type,g_id,num,begintime from order1 where o_id=$oid and buyer_id=$uid";
+			$sql="select price,seller_id,buyer_id,state,type,g_id,num,begintime from order where o_id=$oid";
+			//$sql="select price,seller_id,buyer_id,state,type,g_id,num,begintime from order where o_id=$oid and buyer_id=$uid";
 			$result=mysql_query($sql);
 			$row=mysql_fetch_array($result);
 			$state=$row['state'];
@@ -48,8 +48,8 @@
 			//$date=date('y-m-d',time());
 			//if($date
 
-			$sql1="update order1 set state='CANCLED' where o_id=$oid";
-			//$sql1="update order1 set state='CANCLED' where o_id=$oid and buyer_id=$uid";
+			$sql1="update order set state='CANCLED' where o_id=$oid";
+			//$sql1="update order set state='CANCLED' where o_id=$oid and buyer_id=$uid";
 			if($state=="UNPAID")
 				if(!mysql_query($sql1))
 					echo "<script> alert(\"取消订单失败1\");window.history.back(-1);</script>";

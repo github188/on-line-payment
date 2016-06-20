@@ -19,12 +19,12 @@
         }
 	$state=_post('state');
 	$type=_post('time');
-    $con = mysqli_connect("localhost:3306","root","123456");
+    $con = mysqli_connect("115.159.36.21:3306","payment","payment123");
 	if (!$con) 
-           echo '<script type="text/javascript"> alert("投诉失败：数据库连接失败，请联系网站管理员。"); window.history.back(-1)</script>;';
+           echo '<script type="text/javascript"> alert("数据库连接失败，请联系网站管理员。"); window.history.back(-1)</script>;';
 	
-    mysqli_select_db($con, "abc");
-    $sql = "select o_id,seller_id,buyer_id,state,type,g_id,g_name,price,num,o_time from order1";
+    mysqli_select_db($con, "payment");
+    $sql = "select o_id,seller_id,buyer_id,state,type,g_id,g_name,price,num,o_time from order";
 	if(($state=='1')&&($type=='1')){
 		$result = mysqli_query($con, $sql);
 		}
